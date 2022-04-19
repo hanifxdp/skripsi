@@ -6,10 +6,14 @@ export default function Budaya(props) {
   const { name, onClose } = props;
 
   return (
-    <div className="">
-      <div className="">
+    <div className="absolute w-full bg-white">
+      <div className="flex pb-1 mb-2 border justify-content ">
         Provinsi {name}
-        <FontAwesomeIcon className="" icon={faClose} onClick={onClose} />
+        <FontAwesomeIcon
+          className="cursor-pointer"
+          icon={faClose}
+          onClick={onClose}
+        />
       </div>
       Content
     </div>

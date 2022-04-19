@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { MapContainer, GeoJSON, TileLayer, ZoomControl } from "react-leaflet";
+import {
+  MapContainer,
+  GeoJSON,
+  TileLayer,
+  ZoomControl,
+  Marker,
+} from "react-leaflet";
 import Peta from "../data/indonesia-prov.json";
 import "leaflet/dist/leaflet.css";
 
@@ -25,6 +31,12 @@ class MyMap extends Component {
   };
 
   render() {
+    const { data, geoJson, handleClick } = this.props;
+    const countryStyle = {
+      fillOpacity: 0.3,
+      color: "black",
+      weight: 1,
+    };
     return (
       <div>
         <MapContainer
@@ -35,7 +47,23 @@ class MyMap extends Component {
           zoomControl={false}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <GeoJSON data={Peta.features} onEachFeature={this.onEachProvince} />
+          {data &&
+            data.map((i, idx) => (
+              <Marker
+                key={idx}
+                position={[i.latitude, i.longitude]}
+                eventHandlers={{
+                  click: () => {
+                    handleClick(i.name);
+                  },
+                }}
+              />
+            ))}
+          <GeoJSON
+            style={countryStyle}
+            data={geoJson.features}
+            onEachFeature={this.onEachProvince}
+          />
           <ZoomControl position="bottomright" />
         </MapContainer>
       </div>
