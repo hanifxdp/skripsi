@@ -1,7 +1,5 @@
 import React from "react";
-import MyMap from "../../components/MyMap";
-import Search from "../../components/Search";
-import Content from "../../components/Content";
+import { Budaya, Search, MyMap } from "../../components";
 
 function MapView() {
   return (
@@ -9,7 +7,7 @@ function MapView() {
       <div>
         <Search />
       </div>
-      <Content />
+      <Budaya />
       <MyMap />
     </div>
   );

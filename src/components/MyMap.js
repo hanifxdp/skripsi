@@ -10,6 +10,20 @@ class MyMap extends Component {
     console.log(Peta);
   }
 
+  onEachProvince = (province, layer) => {
+    const totalBudaya = province.properties.totalBudaya;
+    let high = 102.6571429;
+    let low = 65.97813491;
+
+    if (totalBudaya >= high) {
+      layer.options.fillColor = "green";
+    } else if (totalBudaya <= low) {
+      layer.options.fillColor = "red";
+    } else {
+      layer.options.fillColor = "yellow";
+    }
+  };
+
   render() {
     return (
       <div>
@@ -21,7 +35,7 @@ class MyMap extends Component {
           zoomControl={false}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <GeoJSON data={Peta.features} />
+          <GeoJSON data={Peta.features} onEachFeature={this.onEachProvince} />
           <ZoomControl position="bottomright" />
         </MapContainer>
       </div>
