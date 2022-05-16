@@ -1,11 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
-import SearchField from "./SearchField";
-import LoginButton from "./Info";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import SearchField from './SearchField';
 
 export default function SearchBar() {
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
   const [openResult, setOpenResult] = useState(false);
 
   const handleInput = (e) => {
@@ -15,8 +14,8 @@ export default function SearchBar() {
   };
 
   const inputProps = {
-    placeholder: "Telusuri Kerajinan Tradisional Indonesia...",
-    onChange: handleInput,
+    placeholder: 'Telusuri Kerajinan Tradisional Indonesia...',
+    onChange: handleInput
   };
 
   const handleSubmit = () => {
@@ -27,11 +26,7 @@ export default function SearchBar() {
 
   return (
     <div className="fixed z-40 p-3 m-3 bg-white rounded-lg w-96">
-      <SearchField
-        inputProps={inputProps}
-        className=""
-        handleSubmit={handleSubmit}
-      />
+      <SearchField inputProps={inputProps} className="" handleSubmit={handleSubmit} />
       {keyword && (
         <div className="py-3 pl-3">
           <div className="flex">
@@ -42,9 +37,6 @@ export default function SearchBar() {
           </div>
         </div>
       )}
-      {/* <div>
-        <LoginButton />
-      </div> */}
     </div>
   );
 }
