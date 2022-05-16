@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Budaya, Search, MyMap } from "../../components";
+import { Budaya, Search, MyMap, Info } from "../../components";
 import { provincePinData } from "../../data/Data";
 import Peta from "../../data/indonesia-prov.json";
 
@@ -15,6 +15,9 @@ function MapView() {
     <div>
       <div>
         <Search />
+      </div>
+      <div>
+        <Info />
       </div>
       {openBudaya && (
         <Budaya name={locationName} onClose={() => setOpenBudaya(false)} />

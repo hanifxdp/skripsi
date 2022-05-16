@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import ReactDOMServer from "react-dom/server";
+import Leaflet from "leaflet";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   MapContainer,
   GeoJSON,
@@ -8,7 +11,11 @@ import {
 } from "react-leaflet";
 import Peta from "../data/indonesia-prov.json";
 import "leaflet/dist/leaflet.css";
+import "../assets/css/location.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+library.add(faLocationDot);
 class MyMap extends Component {
   state = {};
 
@@ -37,6 +44,12 @@ class MyMap extends Component {
       color: "black",
       weight: 1,
     };
+    const iconHTML = ReactDOMServer.renderToString(
+      <FontAwesomeIcon icon="fa-solid fa-location-dot" size="2x" />
+    );
+    const customMarkerIcon = new Leaflet.DivIcon({
+      html: iconHTML,
+    });
     return (
       <div>
         <MapContainer
@@ -57,6 +70,7 @@ class MyMap extends Component {
                     handleClick(i.name);
                   },
                 }}
+                icon={customMarkerIcon}
               />
             ))}
           <GeoJSON

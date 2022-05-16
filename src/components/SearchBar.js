@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import SearchField from "./SearchField";
+import LoginButton from "./Info";
 
 export default function SearchBar() {
   const [keyword, setKeyword] = useState("");
@@ -25,7 +26,7 @@ export default function SearchBar() {
   console.log(openResult);
 
   return (
-    <div className="absolute z-40 p-3 m-3 bg-white rounded-lg w-96">
+    <div className="fixed z-40 p-3 m-3 bg-white rounded-lg w-96">
       <SearchField
         inputProps={inputProps}
         className=""
@@ -41,6 +42,9 @@ export default function SearchBar() {
           </div>
         </div>
       )}
+      {/* <div>
+        <LoginButton />
+      </div> */}
     </div>
   );
 }
