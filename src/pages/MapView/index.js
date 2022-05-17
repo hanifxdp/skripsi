@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Budaya, Search, MyMap, Info } from "../../components";
+import { Budaya, SearchBar, MyMap, Info } from "../../components";
 import { provincePinData } from "../../data/Data";
 import Peta from "../../data/indonesia-prov.json";
 
@@ -14,7 +14,7 @@ function MapView() {
   return (
     <div>
       <div>
-        <Search />
+        <SearchBar />
       </div>
       <div>
         <Info />

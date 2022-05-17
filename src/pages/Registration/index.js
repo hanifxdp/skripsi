@@ -35,13 +35,13 @@ export default function Registration() {
 							className="w-full p-3 bg-transparent border-none outline-none focus:outline-none"
 						/>
 					</div>
-					<button class="rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400 my-3">
+					<button className="py-2 my-3 font-bold duration-300 bg-indigo-600 rounded-sm hover:bg-indigo-400">
 						Register
 					</button>
-					<p class="text-center text-lg my-3">
+					<p className="my-3 text-lg text-center">
 						Have account?
 						<Link to="/login">
-							<p class=" font-medium text-indigo-500 underline-offset-4 hover:underline">
+							<p className="font-medium text-indigo-500 underline-offset-4 hover:underline">
 								...Login here.
 							</p>
 						</Link>
