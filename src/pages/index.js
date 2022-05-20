@@ -1,6 +1,14 @@
-import Admin from './Admin';
-import MapView from './MapView';
-import Login from './Login';
-import Registration from './Registration';
+import { Admin, AddBudaya, UpdateBudaya, DeleteBudaya } from "./Admin";
+import MapView from "./MapView";
+import Login from "./Login";
+import Registration from "./Registration";
 
-export { Admin, MapView, Login, Registration };
+export {
+	Admin,
+	MapView,
+	Login,
+	Registration,
+	AddBudaya,
+	DeleteBudaya,
+	UpdateBudaya,
+};

@@ -1,6 +1,7 @@
 import React from "react";
 import { Transition } from "@headlessui/react";
-import MenuDisclosure from "../MenuDisclosure";
+import MenuDisclosure from "../../MenuDisclosure";
+import { budayaLinks, provinsiLinks } from "../../constant/disclosure";
 
 const Navbar = (props) => {
 	const { show } = props;
@@ -23,7 +24,8 @@ const Navbar = (props) => {
 					/>
 				</div>
 				<div className="space-y-0.5 px-1">
-					<MenuDisclosure />
+					<MenuDisclosure links={budayaLinks} />
+					<MenuDisclosure links={provinsiLinks} />
 				</div>
 			</div>
 		</Transition>

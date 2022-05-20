@@ -1,10 +1,7 @@
-import MyMap from "./Map";
+import { MyMap, Budaya } from "./Map/";
 import { SearchField, SearchBar } from "./Search";
-import Budaya from "./Budaya";
 import Info from "./Info";
-import Header from "./Header";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import { Navbar, Header, Footer } from "./layouts";
 import MenuDisclosure from "./MenuDisclosure";
 
 export {
