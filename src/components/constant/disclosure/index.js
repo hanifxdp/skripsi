@@ -4,6 +4,7 @@ export const budayaLinks = {
 		{ name: "Add Budaya", to: "/admin/budaya/add" },
 		{ name: "Edit Budaya", to: "/admin/budaya/update" },
 		{ name: "Delete Budaya", to: "/admin/budaya/delete" },
+		{ name: "Show Budaya", to: "/admin/budaya/show" },
 	],
 };
 

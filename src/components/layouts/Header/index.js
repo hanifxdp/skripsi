@@ -12,9 +12,6 @@ const Header = (props) => {
 				<button type="button" onClick={toggleSidebar}>
 					<FontAwesomeIcon icon={faBars} color="white" />
 				</button>
-				<div className="flex font-bold text-white">
-					Manajemen Data Kerajinan Tradisional
-				</div>
 				<div className="flex space-x-2">
 					<div className="font-bold text-white">Admin</div>
 					<button

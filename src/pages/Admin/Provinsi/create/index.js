@@ -4,14 +4,14 @@ import Button from "../../../../components/constant/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import useBudayaServices from "../../../../services/Budaya";
-import { addBudayaForm } from "../../../../components/constant/schema";
+import { addProvinsiForm } from "../../../../components/constant/schema";
 
-function AddBudaya() {
+function AddProvinsi() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({ resolver: yupResolver(addBudayaForm), mode: "onTouched" });
+	} = useForm({ resolver: yupResolver(addProvinsiForm), mode: "onTouched" });
 	const { createState, createBudaya } = useBudayaServices();
 
 	const onSubmitHandlerCallback = useCallback((data) => {
@@ -21,14 +21,14 @@ function AddBudaya() {
 	return (
 		<div className="w-1/2 space-y-4 ">
 			<div className="flex justify-between mb-5">
-				<h3 className="text-xl font-bold">Add New Budaya</h3>
+				<h3 className="text-xl font-bold">Add New Province</h3>
 			</div>
 			<form
 				className="w-1/2 space-y-4"
 				onSubmit={handleSubmit(onSubmitHandlerCallback)}
 			>
 				<div className="space-y-2">
-					{addBudayaForm.map((input) => (
+					{addProvinsiForm.map((input) => (
 						<InputForm
 							key={input.name}
 							type={input.type}
@@ -54,4 +54,4 @@ function AddBudaya() {
 	);
 }
 
-export default AddBudaya;
+export default AddProvinsi;

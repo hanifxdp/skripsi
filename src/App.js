@@ -8,6 +8,10 @@ import {
 	AddBudaya,
 	DeleteBudaya,
 	UpdateBudaya,
+	AddProvinsi,
+	UpdateProvinsi,
+	DeleteProvinsi,
+	ShowBudaya,
 } from "./pages";
 // import { Provider } from "react-redux";
 
@@ -31,9 +35,22 @@ function App() {
 							exact
 							path="/admin/budaya/delete"
 						/>
-						<Route element={<Admin />} exact path="/admin/provinsi/add" />
-						<Route element={<Admin />} exact path="/admin/provinsi/update" />
-						<Route element={<Admin />} exact path="/admin/provinsi/delete" />
+						<Route
+							element={<ShowBudaya />}
+							exact
+							path="/admin/budaya/show"
+						/>
+						<Route element={<AddProvinsi />} exact path="/admin/provinsi/add" />
+						<Route
+							element={<UpdateProvinsi />}
+							exact
+							path="/admin/provinsi/update"
+						/>
+						<Route
+							element={<DeleteProvinsi />}
+							exact
+							path="/admin/provinsi/delete"
+						/>
 					</Route>
 				</Routes>
 			</Router>
