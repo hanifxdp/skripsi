@@ -19,12 +19,12 @@ function AddProvinsi() {
 	});
 
 	return (
-		<div className="w-1/2 space-y-4 ">
+		<div className="w-3/4 space-y-4 ">
 			<div className="flex justify-between mb-5">
 				<h3 className="text-xl font-bold">Add New Province</h3>
 			</div>
 			<form
-				className="w-1/2 space-y-4"
+				className="w-3/4 space-y-4"
 				onSubmit={handleSubmit(onSubmitHandlerCallback)}
 			>
 				<div className="space-y-2">

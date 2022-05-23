@@ -12,7 +12,7 @@ export const addBudayaForm = [
 		name: "image",
 		accept: "image/*",
 	},
-	{ type: "text", label: "Video Kebudayaan", name: "pencatatan_num" },
+	{ type: "url", label: "Video Kebudayaan", name: "pencatatan_num" },
 	{
 		type: "select",
 		label: "Provinsi",
@@ -22,7 +22,7 @@ export const addBudayaForm = [
 			{ value: "bali", label: "Bali" },
 			{ value: "banten", label: "Banten" },
 			{ value: "bengkulu", label: "Bengkulu" },
-			{ value: "diyogyakarta", label: "DI Yogya" },
+			{ value: "diyogyakarta", label: "DI Yogyakarta" },
 			{ value: "dkijakarta", label: "DKI Jakarta" },
 			{ value: "gorontalo", label: "Gorontalo" },
 			{ value: "jambi", label: "Jambi" },
@@ -54,7 +54,23 @@ export const addBudayaForm = [
 		],
 	},
 ];
+export const updateBudayaForm = [
+	{ type: "text", label: "No. Budaya", name: "id_budaya" },
+];
+
+export const deleteBudayaForm = [
+	{ type: "text", label: "No. Budaya", name: "id_budaya" },
+];
 
 export const addProvinsiForm = [
+	{ type: "text", label: "No. Provinsi", name: "id_provinsi" },
 	{ type: "text", label: "Nama Provinsi", name: "nama_provinsi" },
+];
+
+export const updateProvinsiForm = [
+	{ type: "text", label: "No. Provinsi", name: "id_provinsi" },
+];
+
+export const deleteProvinsiForm = [
+	{ type: "text", label: "No. Provinsi", name: "id_provinsi" },
 ];

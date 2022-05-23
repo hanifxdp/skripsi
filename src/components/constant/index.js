@@ -1,4 +1,4 @@
-import disclosure from "./disclosure";
-import userSchema from "./schema";
+import InputForm from "./Form";
+import Button from "./Button";
 
-export { disclosure, userSchema };
+export { InputForm, Button };
