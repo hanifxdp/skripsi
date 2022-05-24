@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import Auth from "../../services/Auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,9 +18,11 @@ function Login() {
 
 	const { loginAdmin } = Auth();
 
+	const navigate = useNavigate();
+
 	const onSubmitHandlerCallback = (data) => {
 		loginAdmin(data);
-		console.log(data);
+		navigate("/admin");
 	};
 
 	const { register, handleSubmit } = useForm({
