@@ -5,14 +5,10 @@ import {
 	Login,
 	MapView,
 	Registration,
-	AddBudaya,
-	DeleteBudaya,
-	UpdateBudaya,
-	AddProvinsi,
-	UpdateProvinsi,
-	DeleteProvinsi,
-	ShowBudaya,
+	ListBudaya,
+	ListProvinsi,
 } from "./pages";
+import AddBudaya from "./pages/Admin/Budaya/Create";
 // import { Provider } from "react-redux";
 
 function App() {
@@ -24,33 +20,9 @@ function App() {
 					<Route element={<Login />} exact path="/login" />
 					<Route element={<Registration />} exact path="/registration" />
 					<Route path="/admin" element={<Admin />}>
-						<Route element={<AddBudaya />} exact path="/admin/budaya/add" />
-						<Route
-							element={<UpdateBudaya />}
-							exact
-							path="/admin/budaya/update"
-						/>
-						<Route
-							element={<DeleteBudaya />}
-							exact
-							path="/admin/budaya/delete"
-						/>
-						<Route
-							element={<ShowBudaya />}
-							exact
-							path="/admin/budaya/show"
-						/>
-						<Route element={<AddProvinsi />} exact path="/admin/provinsi/add" />
-						<Route
-							element={<UpdateProvinsi />}
-							exact
-							path="/admin/provinsi/update"
-						/>
-						<Route
-							element={<DeleteProvinsi />}
-							exact
-							path="/admin/provinsi/delete"
-						/>
+						<Route element={<ListBudaya />} exact path="/admin/budaya" />
+						<Route element={<AddBudaya />} exact path="/admin/budaya/create" />
+						<Route element={<ListProvinsi />} exact path="/admin/provinsi" />
 					</Route>
 				</Routes>
 			</Router>

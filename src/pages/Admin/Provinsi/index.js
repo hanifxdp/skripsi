@@ -1,5 +1,7 @@
-import AddProvinsi from "./create";
-import UpdateProvinsi from "./update";
-import DeleteProvinsi from "./delete";
+import React from "react";
 
-export { AddProvinsi, UpdateProvinsi, DeleteProvinsi };
+function ListProvinsi() {
+	return <div>ListProvinsi</div>;
+}
+
+export default ListProvinsi;

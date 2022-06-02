@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Header, Navbar } from "../../components";
+import { Banner, Header, Navbar } from "../../components";
 import { Outlet } from "react-router-dom";
 
 export default function Admin({ children }) {
@@ -14,6 +14,7 @@ export default function Admin({ children }) {
 			<Navbar show={isOpen} />
 			<div className="w-full h-full">
 				<Header toggleSidebar={toggleSidebar} />
+				<Banner />
 				<div className="w-full px-8 py-6">
 					<Outlet />
 				</div>

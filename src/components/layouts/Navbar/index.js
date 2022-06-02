@@ -1,6 +1,6 @@
 import React from "react";
 import { Transition } from "@headlessui/react";
-import MenuDisclosure from "../../MenuDisclosure";
+import MenuDisclosure from "../MenuDisclosure";
 import { budayaLinks, provinsiLinks } from "../../constant/Disclosure";
 
 const Navbar = (props) => {

@@ -4,7 +4,7 @@ import useAPI, {
 	FETCH_REQUEST,
 	FETCH_SUCCESS,
 	FETCH_FAILED,
-} from "../../api/useAPI";
+} from "../../hooks/useAPI";
 import AuthAPI from "../../api/authAPI";
 // import { alertFailed, alertSuccess } from "../Alert/alertAction";
 

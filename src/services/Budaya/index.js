@@ -4,7 +4,7 @@ import useAPI, {
 	FETCH_FAILED,
 	FETCH_REQUEST,
 	FETCH_SUCCESS,
-} from "../../api/useAPI";
+} from "../../hooks/useAPI";
 
 const useBudayaServices = () => {
 	const [createState, dispatchCreate] = useAPI();
