@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../../components/constant/Button";
 import BudayaTable from "./BudayaTable";
 
-const UserPage = () => (
+const BudayaPage = () => (
 	<div>
 		<div className="flex items-center justify-between mb-5">
 			<h3 className="text-2xl font-bold align-middle">Budaya List</h3>
@@ -12,4 +12,4 @@ const UserPage = () => (
 	</div>
 );
 
-export default UserPage;
+export default BudayaPage;

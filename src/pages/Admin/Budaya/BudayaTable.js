@@ -20,12 +20,6 @@ const BudayaTable = () => {
 
 	const { budaya, navigation, loading } = useFetchBudaya(query);
 
-	// const searchCallbackHandler = useCallback((data) => {
-	// 	setQuery({
-	// 		search: data,
-	// 	});
-	// });
-
 	useEffect(() => {
 		if (budaya.length > 10) {
 			setQuery({
@@ -35,8 +29,6 @@ const BudayaTable = () => {
 			});
 		}
 	}, [budaya]);
-
-	console.log(budaya);
 
 	return (
 		<div className="mt-6 space-y-4">

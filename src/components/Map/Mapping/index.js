@@ -10,7 +10,6 @@ import {
 	Marker,
 	Popup,
 } from "react-leaflet";
-import Peta from "../../../data/indonesia-prov.json";
 import "leaflet/dist/leaflet.css";
 import "../../../assets/css/location.css";
 
@@ -20,10 +19,6 @@ library.add(faLocationDot);
 
 class MyMap extends Component {
 	state = {};
-
-	componentDidMount() {
-		console.log(Peta);
-	}
 
 	onEachProvince = (province, layer) => {
 		const totalBudaya = province.properties.totalBudaya;

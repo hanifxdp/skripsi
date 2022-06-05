@@ -1,35 +1,28 @@
 import React, { useCallback, useState } from "react";
 import { Tab } from "@headlessui/react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import BackButton from "../../../Common/components/Buttons/BackButton";
-import Button from "../../../Common/components/Buttons/Button";
-import { useGetSingleUser } from "../../hooks/useFetchUsers";
-import useUserService from "../../hooks/useUserService";
-import ConfirmModal from "../../../Common/components/Modals/ConfirmModal";
-import useModal from "../../../Common/hooks/useModal";
-import EditUserInfo from "../../components/EditUserInfo";
-import Tabs from "../../../Common/components/Tab/Tabs";
-import EditPassword from "../../components/EditPassword";
+import Button from "../../../../components/constant/Button";
+import { useSingleFetchBudaya } from "../../../../hooks/useSingleFetchBudaya";
+import { Modals } from "../../../../components";
+import useModal from "../../../../hooks/useModal";
+import { useParams } from "react-router-dom";
+import Tabs from "../../../../components/constant/Tabs";
 
-const UpdateUserPage = () => {
-	const { id } = useParams();
-	const { user } = useGetSingleUser(id);
-	const { deleteUser } = useUserService();
+const UpdateBudayaPage = () => {
+	const { id } = useParams;
+	const { singleData } = useSingleFetchBudaya(id);
+	// const { deleteUser } = useUserService();
 	const { isOpen, openModal, closeModal } = useModal();
 
-	const deleteUserCallback = useCallback(() => {
-		deleteUser(id);
-	});
+	// const deleteUserCallback = useCallback(() => {
+	// 	deleteUser(id);
+	// });
 
-	// const tabList = [
-	// 	{ tabTitle: "User Info", tabChildren: <EditUserInfo user={user} /> },
-	// 	{ tabTitle: "Password", tabChildren: <EditPassword user={user} /> },
-	// ];
+	const tabList = [{ tabTitle: "Budaya Info" }, { tabTitle: "Budaya Media" }];
 
 	return (
 		<div className="space-y-4">
 			<div className="flex justify-between">
-				<BackButton />
+				{/* <BackButton /> */}
 				<div>
 					<Button size="small" variant="danger" onClick={openModal}>
 						Delete
@@ -37,20 +30,22 @@ const UpdateUserPage = () => {
 				</div>
 			</div>
 			<div className="flex justify-between mb-5">
-				<h3 className="text-xl font-bold">Edit User {user && user.id}</h3>
+				<h3 className="text-xl font-bold">
+					Edit Budaya {singleData && singleData.id}
+				</h3>
 			</div>
 
 			<Tabs tabList={tabList} />
 
-			<ConfirmModal
+			<Modals
 				title="Delete this user?"
 				description="You can't undo this action once you deleted this user."
 				isOpen={isOpen}
-				onClickConfirm={deleteUserCallback}
+				// onClickConfirm={deleteUserCallback}
 				closeModal={closeModal}
 			/>
 		</div>
 	);
 };
 
-export default UpdateUserPage;
+export default UpdateBudayaPage;

@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useCallback } from "react";
 import SearchField from "../Field";
-
 export default function SearchBar(props) {
 	const { onClickResult, openResult, handleInput, handleSubmit, resultData } =
 		props;
@@ -14,11 +13,7 @@ export default function SearchBar(props) {
 
 	return (
 		<div className="fixed z-40 p-3 m-3 bg-white rounded-lg w-96">
-			<SearchField
-				inputProps={inputProps}
-				className=""
-				handleSubmit={handleSubmit}
-			/>
+			<SearchField inputProps={inputProps} handleSubmit={handleSubmit} />
 			{openResult && (
 				<div className="py-3 pl-3">
 					{resultData.length !== 0 ? (

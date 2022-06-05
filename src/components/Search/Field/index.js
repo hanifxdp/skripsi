@@ -3,7 +3,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 export default function SearchField(props) {
-	const { label, inputProps, className, handleSubmit } = props;
+	const { label, inputProps, handleSubmit } = props;
 
 	// const classes = [, className].filter(Boolean).join(" ");
 

@@ -1,5 +1,5 @@
 import Admin from "./Admin";
-import ListBudaya from "./Budaya";
+import BudayaPage from "./Budaya";
 import ListProvinsi from "./Provinsi";
 
-export { Admin, ListBudaya, ListProvinsi };
+export { Admin, BudayaPage, ListProvinsi };

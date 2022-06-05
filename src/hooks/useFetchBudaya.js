@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import BudayaAPI from "../api/Budaya";
 import usePagination from "./usePagination";
 
-const useFetchBudaya = () => {
+const useFetchBudaya = (query) => {
 	const defaultPageDataValue = {
 		isLoading: false,
 		rowData: [],
@@ -20,10 +20,10 @@ const useFetchBudaya = () => {
 
 	const fetchData = async () => {
 		const res = await BudayaAPI.getBudaya({
-			page: currentPage,
-			limit: pageSize,
+			page: query.page,
+			limit: query.limit,
 		});
-		console.log(res);
+		// console.log(res);
 		setPageData({
 			isLoading: false,
 			rowData: res.data.edge,
@@ -43,7 +43,7 @@ const useFetchBudaya = () => {
 			rowData: [],
 		});
 		fetchData();
-	}, [currentPage, pageSize]);
+	}, [query]);
 
 	const budaya = pageData.rowData;
 	const loading = pageData.isLoading;
