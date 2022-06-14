@@ -23,7 +23,9 @@ function Login() {
 
 	const onSubmitHandlerCallback = (data) => {
 		loginAdmin(data);
-		navigate("/admin");
+		setInterval(() => {
+			navigate("/admin");
+		}, 2000);
 	};
 
 	const { register, handleSubmit } = useForm({
@@ -41,12 +43,15 @@ function Login() {
 			<div className="flex items-center justify-center w-full min-h-screen mx-auto text-white bg-gray-900">
 				<section className="flex flex-col w-3/12 y-4">
 					<div className="m-5 text-6xl text-center">Login</div>
-					<form onSubmit={handleSubmit(onSubmitHandlerCallback)}>
-						<div className="w-full my-3 text-lg duration-300 bg-transparent border-2 rounded-xl focus-within:border-indigo-500">
+					<form
+						onSubmit={handleSubmit(onSubmitHandlerCallback)}
+						autocomplete="off"
+					>
+						<div className="w-full my-3 text-lg duration-300 bg-transparent border-2 rounded-xl focus-within:border-indigo-500 ">
 							<input
 								type="text"
 								placeholder="Username"
-								className="w-full p-3 bg-transparent border-none outline-none focus:outline-none"
+								className="w-full p-3 bg-transparent border-none outline-none focus:outline-none "
 								{...register("username")}
 							/>
 						</div>

@@ -29,13 +29,13 @@ export default function Admin({ children }) {
 		}
 	);
 
-	useEffect(() => {
-		if (admin) {
-			navigate("/admin");
-		} else {
-			navigate("/");
-		}
-	}, [admin]);
+	// useEffect(() => {
+	// 	if (admin) {
+	// 		navigate("/admin");
+	// 	} else {
+	// 		navigate("/");
+	// 	}
+	// }, [admin]);
 	const toggleSidebar = () => {
 		setIsOpen(!isOpen);
 		console.log("toggleSidebar");

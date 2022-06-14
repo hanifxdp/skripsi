@@ -51,7 +51,7 @@ export default function ListBudaya(props) {
 						<li
 							key={idx}
 							onClick={() => handleClickBudaya(i.id)}
-							className="leading-normal list-decimal hover: pointer-cursor"
+							className="leading-normal list-decimal hover:cursor-pointer"
 						>
 							{i.nama_budaya}
 						</li>
