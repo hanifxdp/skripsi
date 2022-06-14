@@ -16,7 +16,7 @@ const Table = ({ columns, data, loading }) => {
 			{...getTableProps()}
 			className="w-full overflow-hidden bg-white border-separate shadow rounded-xl"
 		>
-			<thead className="text-white bg-cyan-800 rounded-t-xl">
+			<thead className="text-white bg-sky-300 rounded-t-xl">
 				{headerGroups.map((headerGroup) => (
 					<tr
 						key={headerGroup.id}

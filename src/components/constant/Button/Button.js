@@ -8,7 +8,7 @@ const Button = (props) => {
 	const background =
 		variant === "danger"
 			? "bg-red-600 hover:bg-red-500 disabled:bg-red-200"
-			: "bg-cyan-800 hover:bg-cyan-700 disabled:bg-slate-400";
+			: "bg-sky-800 hover:bg-sky-700 disabled:bg-slate-400";
 
 	return to ? (
 		<Link to={to}>

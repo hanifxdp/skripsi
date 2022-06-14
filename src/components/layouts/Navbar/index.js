@@ -18,9 +18,9 @@ const Navbar = (props) => {
 		>
 			<div className="sticky top-0 left-0 h-screen space-y-2 overflow-y-auto bg-white shadow-xl w-80 no-scrollbar">
 				<div className="px-12 py-8">
-					<p className="text-xl font-bold">
-						Manajemen Data Kerajinan Tradisional
-					</p>
+					<h5 className="text-xl font-bold">
+						Manajemen Data Kerajinan Tradisional Indonesia
+					</h5>
 				</div>
 				<div className="space-y-0.5 px-1">
 					<MenuDisclosure links={budayaLinks} />

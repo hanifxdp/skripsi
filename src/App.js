@@ -1,21 +1,36 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React from "react";
 import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+} from "react-router-dom";
+import React, { useMemo } from "react";
+import {
+	MapView,
 	Admin,
 	Login,
-	MapView,
 	Registration,
 	BudayaPage,
-	ListProvinsi,
+	ProvinsiPage,
 } from "./pages";
 import AddBudaya from "./pages/Admin/Budaya/Create";
 import UpdateBudayaPage from "./pages/Admin/Budaya/Update";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { AdminContext } from "./context/AdminContext";
 
-// import { Provider } from "react-redux";
 
 function App() {
+	const [admin, setAdmin] = useLocalStorage("admin");
+
+	const adminProviderValue = useMemo(
+		() => ({
+			admin,
+			setAdmin,
+		}),
+		[admin, setAdmin]
+	);
+	
 	return (
-		<div>
+		<AdminContext.Provider value={adminProviderValue}>
 			<Router>
 				<Routes>
 					<Route element={<MapView />} exact path="/" />
@@ -29,11 +44,11 @@ function App() {
 							exact
 							path="/admin/budaya/:id"
 						/>
-						<Route element={<ListProvinsi />} exact path="/admin/provinsi" />
+						<Route element={<ProvinsiPage />} exact path="/admin/provinsi" />
 					</Route>
 				</Routes>
 			</Router>
-		</div>
+		</AdminContext.Provider>
 	);
 }
 

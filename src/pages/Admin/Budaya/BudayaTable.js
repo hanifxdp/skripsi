@@ -20,10 +20,11 @@ const BudayaTable = () => {
 
 	const { budaya, navigation, loading } = useFetchBudaya(query);
 
+	// console.log(budaya);
+
 	useEffect(() => {
 		if (budaya.length > 10) {
 			setQuery({
-				...query,
 				limit: pageSize,
 				page: currentPage,
 			});

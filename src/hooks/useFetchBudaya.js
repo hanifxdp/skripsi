@@ -8,33 +8,32 @@ const useFetchBudaya = (query) => {
 		rowData: [],
 	};
 	const [pageData, setPageData] = useState(defaultPageDataValue);
+	const [navigation, setNavigation] = useState({
+		hasNext: false,
+		hasPrev: false,
+		totalPages: 0,
+		totalRows: 0,
+	});
 
-	const {
-		currentPage,
-		setCurrentPage,
-		pageSize,
-		setPageSize,
-		navigation,
-		setNavigation,
-	} = usePagination();
-
-	const fetchData = async () => {
-		const res = await BudayaAPI.getBudaya({
-			page: query.page,
-			limit: query.limit,
-		});
+	const fetchData = (queryData) => {
+		BudayaAPI.getBudaya(queryData)
+			.then((res) => {
+				setPageData({
+					isLoading: false,
+					rowData: res.data.edge,
+					size: res.data.cursor.size,
+				});
+				setNavigation({
+					hasNext: res.data.cursor.hasNext,
+					hasPrev: res.data.cursor.hasPrev,
+					totalPages: res.data.cursor.totalPages,
+					totalRows: res.data.cursor.totalRows,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		// console.log(res);
-		setPageData({
-			isLoading: false,
-			rowData: res.data.edge,
-			size: res.data.cursor.size,
-		});
-		setNavigation({
-			hasNext: res.data.cursor.hasNext,
-			hasPrev: res.data.cursor.hasPrev,
-			totalPages: res.data.cursor.totalPages,
-			totalRows: res.data.cursor.totalRows,
-		});
 	};
 
 	useEffect(() => {
@@ -42,8 +41,8 @@ const useFetchBudaya = (query) => {
 			isLoading: true,
 			rowData: [],
 		});
-		fetchData();
-	}, [query]);
+		fetchData(query);
+	}, [query.limit, query.page]);
 
 	const budaya = pageData.rowData;
 	const loading = pageData.isLoading;

@@ -42,7 +42,7 @@ const TablePagination = (props) => {
 						disabled={!canPreviousPage}
 						className="p-1 rounded bg-cyan-700 hover:bg-cyan-600 disabled:bg-slate-400"
 					>
-						<FontAwesomeIcon icon={faChevronCircleLeft} />
+						<FontAwesomeIcon icon={faChevronCircleLeft} color="white" />
 					</button>
 					<button
 						type="button"
@@ -50,11 +50,11 @@ const TablePagination = (props) => {
 						disabled={!canPreviousPage}
 						className="p-1 rounded bg-cyan-700 hover:bg-cyan-600 disabled:bg-slate-400"
 					>
-						<FontAwesomeIcon icon={faChevronLeft} />
+						<FontAwesomeIcon icon={faChevronLeft} color="white" />
 					</button>
 					<input
 						type="number"
-						className="w-10 pl-3 text-lg text-center border-2 rounded border-cyan-700"
+						className="w-16 pl-3 text-lg text-center border-2 rounded border-cyan-700"
 						value={currentPage}
 						min={1}
 						max={totalPage}
@@ -66,7 +66,7 @@ const TablePagination = (props) => {
 						disabled={!canNextPage}
 						className="p-1 rounded bg-cyan-700 hover:bg-cyan-600 disabled:bg-slate-400"
 					>
-						<FontAwesomeIcon icon={faChevronRight} />
+						<FontAwesomeIcon icon={faChevronRight} color="white" />
 					</button>
 					<button
 						type="button"
@@ -76,7 +76,7 @@ const TablePagination = (props) => {
 						disabled={!canNextPage}
 						className="p-1 rounded bg-cyan-700 hover:bg-cyan-600 disabled:bg-slate-400"
 					>
-						<FontAwesomeIcon icon={faChevronCircleRight} />
+						<FontAwesomeIcon icon={faChevronCircleRight} color="white" />
 					</button>
 				</div>
 			</div>

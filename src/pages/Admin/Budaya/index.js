@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../../components/constant/Button";
+import Button from "../../../components/constant/Button/Button";
 import BudayaTable from "./BudayaTable";
 
 const BudayaPage = () => (

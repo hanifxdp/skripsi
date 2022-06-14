@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Budaya, SearchBar, MyMap, Info } from "../../components";
+import { SearchBar, MyMap, Info } from "../../components";
 import Peta from "../../data/indonesia-prov.json";
 import ProvinsiAPI from "../../api/Provinsi";
 import BudayaAPI from "../../api/Budaya";
@@ -7,6 +7,7 @@ import { routes } from "../../config/routes";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ListBudaya from "../../components/Map/ListBudaya";
 import DetailBudaya from "../../components/Map/DetailBudaya";
+import calculationAPI from "../../api/calculationAPI";
 
 function MapView() {
 	//list budaya
@@ -15,22 +16,32 @@ function MapView() {
 	const id = parseInt(searchParams.get("id"));
 	const idBudaya = parseInt(searchParams.get("idBudaya"));
 	const [locationName, setlocationName] = useState("");
-	const [openBudaya, setOpenBudaya] = useState(false);
 	const [openResult, setOpenResult] = useState(false);
 	const [filteredResult, setFilteredResult] = useState([]);
+	const [dataCalc, setDataCalc] = useState(null);
 	const [dataProvinsi, setDataProvinsi] = useState([]);
 	const [dataBudaya, setDataBudaya] = useState([]);
 	const [keyword, setKeyword] = useState("");
 
 	const fetchData = async () => {
 		const res = await ProvinsiAPI.getProvinsi();
-		const resBudaya = await BudayaAPI.setDataProvinsi();
-		setDataProvinsi(res.data.data);
-		setDataBudaya(res.data.data);
+		setDataProvinsi(res.data);
+	};
+
+	const fetchDataCalc = async () => {
+		const res = await calculationAPI.getCalc();
+		setDataCalc(res.data.data);
+	};
+
+	const fetchDataBudaya = async () => {
+		const resBudaya = await BudayaAPI.getAll();
+		setDataBudaya(resBudaya.data.data);
 	};
 
 	useEffect(() => {
 		fetchData();
+		fetchDataBudaya();
+		fetchDataCalc();
 	}, []);
 
 	const handleClickLocation = (id, name) => {
@@ -73,21 +84,31 @@ function MapView() {
 	};
 
 	return (
-		<div>
+		<div onClick={() => setOpenResult(false)}>
 			<div>
-				<SearchBar />
+				<SearchBar
+					onClickResult={handleClickResult}
+					openResult={openResult}
+					handleInput={handleInput}
+					handleSubmit={handleSubmit}
+					resultData={filteredResult}
+				/>
+				{renderContent()}
 			</div>
 			<div>
 				<Info />
 			</div>
-			{openBudaya && (
+			{/* {openBudaya && (
 				<Budaya name={locationName} onClose={() => setOpenBudaya(false)} />
+			)} */}
+			{dataProvinsi.length > 0 && dataCalc !== null && (
+				<MyMap
+					handleClick={handleClickLocation}
+					geoJson={Peta}
+					data={dataProvinsi}
+					dataCalc={dataCalc}
+				/>
 			)}
-			<MyMap
-				handleClickLocation={handleClickLocation}
-				geoJson={Peta}
-				data={dataProvinsi.data}
-			/>
 		</div>
 	);
 }

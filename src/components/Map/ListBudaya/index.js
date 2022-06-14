@@ -3,6 +3,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BudayaAPI from "../../../api/Budaya";
+import defaultImage from "../../../assets/img/img-default.svg";
 
 export default function ListBudaya(props) {
 	const { name, handleClickBudaya } = props;
@@ -18,31 +19,49 @@ export default function ListBudaya(props) {
 
 	useEffect(() => {
 		fetchListBudaya();
-	});
+	}, []);
 
 	const onClose = () => {
 		navigate("/");
 	};
 
 	return (
-		<section>
-			<div>
-				<p>Provinsi {name}</p>
-				<FontAwesomeIcon icon={faClose} />
+		<section className="absolute z-10 bg-white rounded-r-2xl w-[28rem]">
+			<div className="absolute top-0 right-0 px-6 py-8 left">
+				<FontAwesomeIcon icon={faClose} onClick={onClose} />
 			</div>
-			<div>
+			<div
+				className="bg-center bg-auto "
+				// style="background-image: url('../../../assets/img/img-default.svg')"
+			>
+				<img
+					alt="budaya-img"
+					src={defaultImage}
+					className="w-full rounded-tr-2xl"
+				/>
+			</div>
+			<div className="inline-block p-7">
+				<p className="text-xl font-bold">{name}</p>
+				<p className="text-sm">Kerajinan Tradisional dari Provinsi {name}</p>
+			</div>
+			<p className="px-7">Daftar Kerajinan Tradisional</p>
+			<ul className="px-10 my-1 list-inside">
 				{listBudaya &&
 					listBudaya.map((i, idx) => (
-						<div key={idx} onClick={() => handleClickBudaya(i.id)}>
+						<li
+							key={idx}
+							onClick={() => handleClickBudaya(i.id)}
+							className="leading-normal list-decimal hover: pointer-cursor"
+						>
 							{i.nama_budaya}
-						</div>
+						</li>
 					))}
-			</div>
+			</ul>
 		</section>
 	);
 }
 
-ListBudaya.defaultProps = {
-	name: "",
-	handleClickBudaya: () => {},
-};
+// ListBudaya.defaultProps = {
+// 	name: "",
+// 	handleClickBudaya: () => {},
+// };

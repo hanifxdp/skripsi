@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import Button from "../Button";
+import Button from "../Button/Button";
 
 const ConfirmModal = (props) => {
 	const { isOpen, closeModal, title, description, onClickConfirm } = props;

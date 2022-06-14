@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import BudayaAPI from "../../api/Budaya";
+import { useNavigate } from "react-router-dom";
 import useAPI, {
 	FETCH_FAILED,
 	FETCH_REQUEST,
@@ -7,6 +8,7 @@ import useAPI, {
 } from "../../hooks/useAPI";
 
 const useBudayaServices = () => {
+	const navigate = useNavigate();
 	const [createState, dispatchCreate] = useAPI();
 	const [updateState, dispatchUpdate] = useAPI();
 	const [deleteState, dispatchDelete] = useAPI();
@@ -17,6 +19,7 @@ const useBudayaServices = () => {
 			.then((res) => {
 				const response = res.data;
 				dispatchCreate({ type: FETCH_SUCCESS, payload: response });
+				navigate("/admin/budaya");
 			})
 			.catch((err) => {
 				const errMsg = err.message;
@@ -44,6 +47,7 @@ const useBudayaServices = () => {
 			.then((res) => {
 				const response = res.data;
 				dispatchDelete({ type: FETCH_SUCCESS, payload: response });
+				navigate("/admin/budaya");
 			})
 			.catch((err) => {
 				const errMsg = err.message;

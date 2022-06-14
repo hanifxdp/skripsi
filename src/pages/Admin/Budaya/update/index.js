@@ -1,28 +1,44 @@
-import React, { useCallback, useState } from "react";
-import { Tab } from "@headlessui/react";
-import Button from "../../../../components/constant/Button";
+import React, { useCallback } from "react";
+import Button from "../../../../components/constant/Button/Button";
 import { useSingleFetchBudaya } from "../../../../hooks/useSingleFetchBudaya";
 import { Modals } from "../../../../components";
 import useModal from "../../../../hooks/useModal";
 import { useParams } from "react-router-dom";
 import Tabs from "../../../../components/constant/Tabs";
+import {
+	EditBudayaInfo,
+	EditBudayaMedia,
+} from "../../../../components/layouts";
+import useBudayaServices from "../../../../services/Budaya";
+import BackButton from "../../../../components/constant/Button/Back";
 
 const UpdateBudayaPage = () => {
-	const { id } = useParams;
+	const { id } = useParams();
 	const { singleData } = useSingleFetchBudaya(id);
-	// const { deleteUser } = useUserService();
+	const { deleteBudaya } = useBudayaServices();
 	const { isOpen, openModal, closeModal } = useModal();
 
-	// const deleteUserCallback = useCallback(() => {
-	// 	deleteUser(id);
-	// });
+	const deleteBudayaCallback = useCallback(() => {
+		deleteBudaya(id);
+	});
 
-	const tabList = [{ tabTitle: "Budaya Info" }, { tabTitle: "Budaya Media" }];
+	const tabList = [
+		{
+			tabTitle: "Budaya Info",
+			tabChildren: <EditBudayaInfo budaya={singleData} />,
+			searchParams: "budaya-info",
+		},
+		{
+			tabTitle: "Budaya Media",
+			tabChildren: <EditBudayaMedia />,
+			searchParams: "budaya-info",
+		},
+	];
 
 	return (
 		<div className="space-y-4">
 			<div className="flex justify-between">
-				{/* <BackButton /> */}
+				<BackButton />
 				<div>
 					<Button size="small" variant="danger" onClick={openModal}>
 						Delete
@@ -38,10 +54,10 @@ const UpdateBudayaPage = () => {
 			<Tabs tabList={tabList} />
 
 			<Modals
-				title="Delete this user?"
+				title="Delete this Budaya?"
 				description="You can't undo this action once you deleted this user."
 				isOpen={isOpen}
-				// onClickConfirm={deleteUserCallback}
+				onClickConfirm={deleteBudayaCallback}
 				closeModal={closeModal}
 			/>
 		</div>

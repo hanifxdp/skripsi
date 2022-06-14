@@ -1,14 +1,14 @@
-import { useCallback } from "react";
-// import { useDispatch } from "react-redux";
+import { useCallback, useContext } from "react";
 import useAPI, {
 	FETCH_REQUEST,
 	FETCH_SUCCESS,
 	FETCH_FAILED,
 } from "../../hooks/useAPI";
 import AuthAPI from "../../api/authAPI";
-// import { alertFailed, alertSuccess } from "../Alert/alertAction";
+import { AdminContext } from "../../context/AdminContext";
 
 const Auth = () => {
+	const { setAdmin } = useContext(AdminContext);
 	const [loginState, dispatchLogin] = useAPI();
 
 	// const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const Auth = () => {
 			dispatchLogin({ type: FETCH_REQUEST });
 			AuthAPI.login(data)
 				.then((res) => {
-					const response = res.data;
+					const response = res.data.data;
 					dispatchLogin({ type: FETCH_SUCCESS, payload: response });
-					// dispatch(alertSuccess(response.message));
+					setAdmin(response);
 				})
 				.catch((err) => {
 					const errMsg = err.message;

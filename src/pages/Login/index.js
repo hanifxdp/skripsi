@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { AdminContext } from "../../context/AdminContext";
 // import login from "../../services/Auth";
 
 const schema = yup.object().shape({
@@ -32,7 +33,7 @@ function Login() {
 
 	return (
 		<>
-			<div className="fixed p-3 m-3 rounded-lg">
+			<div className="fixed p-3 m-3 bg-white rounded-lg">
 				<Link to="/">
 					<FontAwesomeIcon icon={faArrowLeft} className="" />
 				</Link>
@@ -73,9 +74,11 @@ function Login() {
 					</div>
 					<div className="my-3 text-lg text-center">
 						No account?
-						<p className="font-medium text-indigo-500 underline-offset-4 hover:underline">
-							...Create One
-						</p>
+						<Link to={"/registration"}>
+							<p className="font-medium text-indigo-500 underline-offset-4 hover:underline">
+								...Create One
+							</p>
+						</Link>
 					</div>
 				</section>
 			</div>
