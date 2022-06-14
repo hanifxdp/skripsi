@@ -13,8 +13,8 @@ import {
 	BudayaPage,
 	ProvinsiPage,
 } from "./pages";
-import AddBudaya from "./pages/Admin/Budaya/Create";
-import UpdateBudayaPage from "./pages/Admin/Budaya/Update";
+import AddBudaya from "./pages/Admin/Budaya/Created";
+import UpdateBudayaPage from "./pages/Admin/Budaya/Updated";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { AdminContext } from "./context/AdminContext";
 import NotFound from "./404";
