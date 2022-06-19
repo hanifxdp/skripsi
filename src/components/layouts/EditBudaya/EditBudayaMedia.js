@@ -33,32 +33,35 @@ export const EditBudayaMedia = () => {
 		updateBudaya(singleData.data.id, data);
 	});
 	return (
-		<form
-			className="w-1/2 space-y-4"
-			onSubmit={handleSubmit(onSubmitHandlerCallback)}
-		>
-			<div className="space-y-2">
-				{updateBudayaMediaForm.map((input) => (
-					<InputForm
-						key={input.name}
-						type={input.type}
-						label={input.label}
-						name={input.name}
-						disabled={updateState.loading}
-						register={register}
-						error={errors}
-						options={input.options}
-						required
-					/>
-				))}
-			</div>
-			<div className="flex justify-end">
-				<div>
-					<Button size="small" submit>
-						Submit
-					</Button>
+		<div>
+			<img src={singleData.data?.image} className="rounded-tr-2xl " />
+			<form
+				className="w-1/2 space-y-4"
+				onSubmit={handleSubmit(onSubmitHandlerCallback)}
+			>
+				<div className="space-y-2">
+					{updateBudayaMediaForm.map((input) => (
+						<InputForm
+							key={input.name}
+							type={input.type}
+							label={input.label}
+							name={input.name}
+							disabled={updateState.loading}
+							register={register}
+							error={errors}
+							options={input.options}
+							required
+						/>
+					))}
 				</div>
-			</div>
-		</form>
+				<div className="flex justify-end">
+					<div>
+						<Button size="small" submit>
+							Submit
+						</Button>
+					</div>
+				</div>
+			</form>
+		</div>
 	);
 };

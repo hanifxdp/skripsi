@@ -30,7 +30,7 @@ const UpdateBudayaPage = () => {
 		},
 		{
 			tabTitle: "Budaya Media",
-			tabChildren: <EditBudayaMedia />,
+			tabChildren: <EditBudayaMedia budaya={singleData} />,
 			searchParams: "budaya-info",
 		},
 	];

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import defaultImage from "../../../assets/img/img-default.svg";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import BudayaAPI from "../../../api/Budaya";
 
 export default function DetailBudaya() {
@@ -17,7 +17,7 @@ export default function DetailBudaya() {
 		const res = await BudayaAPI.getDetailBudaya(id);
 		setDetail(res.data.data);
 	};
-	console.log(id);
+	// console.log(id);
 
 	useEffect(() => {
 		fetchDetailBudaya();

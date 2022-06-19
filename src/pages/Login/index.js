@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useContext } from "react";
 import Auth from "../../services/Auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { AdminContext } from "../../context/AdminContext";
+import { ModalContext } from "../../context";
+import { Modals } from "../../components";
 // import login from "../../services/Auth";
 
 const schema = yup.object().shape({
@@ -15,23 +16,25 @@ const schema = yup.object().shape({
 });
 
 function Login() {
-	// const dispatch = useDispatch();
-
+	const { modal, setModal } = useContext(ModalContext);
 	const { loginAdmin } = Auth();
-
-	const navigate = useNavigate();
 
 	const onSubmitHandlerCallback = (data) => {
 		loginAdmin(data);
-		setInterval(() => {
-			navigate("/admin");
-		}, 2000);
 	};
 
-	const { register, handleSubmit } = useForm({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
 		resolver: yupResolver(schema),
 		mode: "onTouched",
 	});
+
+	const clickOke = () => {
+		setModal(false);
+	};
 
 	return (
 		<>
@@ -51,17 +54,27 @@ function Login() {
 							<input
 								type="text"
 								placeholder="Username"
-								className="w-full p-3 bg-transparent border-none outline-none focus:outline-none "
+								className={`w-full p-3 bg-transparent border-none outline-none focus:outline-none ${
+									errors.username ? "border-red-500" : "border-slate-300"
+								}`}
 								{...register("username")}
 							/>
+						</div>
+						<div className="text-xs text-red-600 break-words">
+							{errors.username && errors.username.message}
 						</div>
 						<div className="w-full my-3 text-lg duration-300 bg-transparent border-2 rounded-xl focus-within:border-indigo-500">
 							<input
 								type="password"
 								placeholder="Password"
-								className="w-full p-3 bg-transparent border-none outline-none focus:outline-none"
+								className={`w-full p-3 bg-transparent border-none outline-none focus:outline-none ${
+									errors.password ? "border-red-500" : "border-slate-300"
+								}`}
 								{...register("password")}
 							/>
+						</div>
+						<div className="text-xs text-red-600 break-words">
+							{errors.password && errors.password.message}
 						</div>
 						<div className="items-center justify-center py-2 ">
 							<button
@@ -72,19 +85,21 @@ function Login() {
 							</button>
 						</div>
 					</form>
-					<div className="my-3 text-lg text-center">
-						<p className="py-2 font-semibold text-center text-gray-500 duration-300 transform hover:text-gray-300">
-							FORGOT PASSWORD?
-						</p>
-					</div>
-					<div className="my-3 text-lg text-center">
+					{/* <div className="my-3 text-lg text-center">
 						No account?
 						<Link to={"/registration"}>
 							<p className="font-medium text-indigo-500 underline-offset-4 hover:underline">
 								...Create One
 							</p>
 						</Link>
-					</div>
+					</div> */}
+					<Modals
+						title="Wrong Combination"
+						description="Please insert the correct combination."
+						isOpen={modal}
+						onClickConfirm={clickOke}
+						closeModal={clickOke}
+					/>
 				</section>
 			</div>
 		</>

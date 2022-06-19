@@ -5,10 +5,13 @@ import useAPI, {
 	FETCH_FAILED,
 } from "../../hooks/useAPI";
 import AuthAPI from "../../api/authAPI";
-import { AdminContext } from "../../context/AdminContext";
+import { AdminContext, ModalContext } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
+	const navigate = useNavigate();
 	const { setAdmin } = useContext(AdminContext);
+	const { setModal } = useContext(ModalContext);
 	const [loginState, dispatchLogin] = useAPI();
 	const [registerState, dispatchRegister] = useAPI();
 
@@ -20,12 +23,14 @@ export const Auth = () => {
 					const response = res.data.data;
 					dispatchLogin({ type: FETCH_SUCCESS, payload: response });
 					setAdmin(response);
+					setInterval(() => {
+						navigate("/admin");
+					}, 2000);
 				})
 				.catch((err) => {
 					const errMsg = err.message;
-
 					dispatchLogin({ type: FETCH_FAILED, payload: errMsg });
-					// dispatch(alertFailed(errMsg));
+					setModal(true);
 				});
 		},
 		[dispatchLogin]

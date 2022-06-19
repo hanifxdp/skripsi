@@ -9,6 +9,7 @@ import {
 	ZoomControl,
 	Marker,
 	Tooltip,
+	useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "../../../assets/css/location.css";
@@ -27,6 +28,13 @@ function MyMap(props) {
 	};
 
 	const onEachProvince = async (province, layer) => {
+		layer.on("click", function () {
+			// console.log(data);
+			handleClick(
+				data[province.index].provinsi.id,
+				data[province.index].provinsi.nama_provinsi
+			);
+		});
 		let high = await dataCalc.high;
 		let low = await dataCalc.low;
 		const totalBudaya = parseInt(data[province.index]?.totalBudaya) + 3;
