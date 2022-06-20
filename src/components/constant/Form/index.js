@@ -11,6 +11,8 @@ const InputForm = (props) => {
 		required,
 		error,
 		options,
+		accept,
+		id,
 	} = props;
 
 	return (
@@ -41,6 +43,7 @@ const InputForm = (props) => {
 				/>
 			) : type === "file" ? (
 				<input
+					id={id}
 					type={type}
 					className={` ${
 						error[name] ? "border-red-500" : "border-slate-300"
@@ -52,6 +55,7 @@ const InputForm = (props) => {
 					hover:file:bg-violet-100`}
 					placeholder={placeholder}
 					disabled={disabled}
+					accept={accept}
 					{...register(name, { required })}
 				/>
 			) : (

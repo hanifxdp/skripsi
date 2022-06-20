@@ -19,11 +19,10 @@ const useBudayaServices = () => {
 			.then((res) => {
 				const response = res.data;
 				dispatchCreate({ type: FETCH_SUCCESS, payload: response });
-				navigate("/admin/budaya");
+				navigate("/admin/budaya", { replace: true });
 			})
 			.catch((err) => {
 				const errMsg = err.message;
-
 				dispatchCreate({ type: FETCH_FAILED, payload: errMsg });
 			});
 	});
@@ -34,6 +33,7 @@ const useBudayaServices = () => {
 			.then((res) => {
 				const response = res.data;
 				dispatchUpdate({ type: FETCH_SUCCESS, payload: response });
+				navigate("/admin/budaya", { replace: true });
 			})
 			.catch((err) => {
 				const errMsg = err.message;

@@ -11,8 +11,9 @@ export const addBudayaForm = [
 		label: "Gambar Kebudayaan",
 		name: "image",
 		accept: "image/*",
+		id: "fileInput",
 	},
-	// { type: "url", label: "Video Kebudayaan", name: "video" },
+	{ type: "url", label: "Video Kebudayaan", name: "video" },
 	{
 		type: "select",
 		label: "Provinsi",
@@ -95,7 +96,12 @@ export const updateBudayaForm = [
 ];
 
 export const updateBudayaMediaForm = [
-	{ type: "file", label: "Image", name: "image" },
+	{
+		type: "file",
+		label: "Image",
+		name: "image",
+		accept: "image/*",
+	},
 	{ type: "url", label: "Video", name: "video" },
 ];
 

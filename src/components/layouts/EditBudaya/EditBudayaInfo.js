@@ -28,6 +28,7 @@ export const EditBudayaInfo = (props) => {
 			});
 		}
 	}, [singleData]);
+	
 
 	const onSubmitHandlerCallback = useCallback((data) => {
 		updateBudaya(singleData.data.id, data);

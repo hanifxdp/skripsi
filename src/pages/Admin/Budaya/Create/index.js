@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import InputForm from "../../../../components/constant/Form";
 import Button from "../../../../components/constant/Button/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,25 +9,39 @@ import {
 	addBudayaSchema,
 } from "../../../../components/constant/schema";
 import BackButton from "../../../../components/constant/Button/Back";
+import checkURL from "../../../../helpers/checkURL";
 
 function AddBudaya() {
 	const {
+		watch,
 		register,
 		handleSubmit,
-		formState: { errors, dirtyFields },
+		formState: { errors },
 	} = useForm({ resolver: yupResolver(addBudayaSchema), mode: "onTouched" });
 	const { createState, createBudaya } = useBudayaServices();
 
-	const onSubmitHandlerCallback = useCallback((data) => {
-		const updateData = {};
+	const watchImage = watch("image");
 
-		if (Object.keys(dirtyFields).length < 1) {
-			console.log("gagal");
+	const imageURL = useMemo(() => {
+		if (typeof watchImage === "string" && checkURL(watchImage))
+			return watchImage;
+		if (watchImage?.length > 0 && watchImage !== "undefined") {
+			return URL.createObjectURL(watchImage[0]);
 		}
 
-		Object.keys(dirtyFields).map((field) => (updateData[field] = data[field]));
-		createBudaya(updateData);
-		console.log(updateData);
+		return "";
+	}, [watchImage]);
+
+	const onSubmitHandlerCallback = useCallback((data) => {
+		try {
+			const uploadedImage = data.image ? data.image[0] : undefined;
+			const addForm = document.getElementById("add_budaya");
+			const formData = new FormData(addForm);
+			formData.set("image", uploadedImage);
+			createBudaya(formData);
+		} catch (error) {
+			console.log(error);
+		}
 	});
 
 	return (
@@ -37,12 +51,16 @@ function AddBudaya() {
 				<h3 className="text-xl font-bold">Add New Budaya</h3>
 			</div>
 			<form
+				id="add_budaya"
 				className="w-3/4 space-y-4"
 				onSubmit={handleSubmit(onSubmitHandlerCallback)}
 			>
+				<div className="text-sm">Image Preview</div>
+				<img src={imageURL} className="object-contain h-48 rounded-lg w-96 " />
 				<div className="space-y-2">
 					{addBudayaForm.map((input) => (
 						<InputForm
+							id={input.id}
 							key={input.name}
 							type={input.type}
 							label={input.label}
@@ -50,6 +68,7 @@ function AddBudaya() {
 							disabled={createState.loading}
 							register={register}
 							error={errors}
+							accept={input.accept}
 							options={input.options}
 							required
 						/>
@@ -57,13 +76,7 @@ function AddBudaya() {
 				</div>
 				<div className="flex justify-start my-5">
 					<div>
-						<Button
-							size="small"
-							submit
-							// onClick={() => {
-							// 	console.log("string");
-							// }}
-						>
+						<Button size="small" submit>
 							Submit
 						</Button>
 					</div>

@@ -25,7 +25,7 @@ export default function DetailBudaya() {
 
 	return (
 		<section className="absolute z-10 bg-white rounded-r-2xl w-[28rem]">
-			<div className="absolute top-0 right-0 px-6 py-8 left">
+			<div className="absolute top-0 right-0 px-6 py-8 left hover:cursor-pointer">
 				<FontAwesomeIcon icon={faClose} onClick={() => navigate(-1)} />
 			</div>
 			<div>
