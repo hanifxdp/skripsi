@@ -55,7 +55,7 @@ export const EditBudayaMedia = () => {
 		<div>
 			<div className="text-sm">Preview Image</div>
 			<img
-				src={singleData.data?.image || { imageURL } || defaultImage}
+				src={imageURL || singleData.data?.image || defaultImage}
 				className="object-contain h-48 rounded-lg w-96 "
 			/>
 			<form

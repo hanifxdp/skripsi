@@ -7,6 +7,10 @@ const ColumnGenerator = () => {
 	const column = React.useMemo(
 		() => [
 			{
+				Header: "No",
+				accessor: "id",
+			},
+			{
 				Header: "No Registrasi",
 				accessor: "registNum",
 			},

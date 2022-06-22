@@ -8,6 +8,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ListBudaya from "../../components/Map/ListBudaya";
 import DetailBudaya from "../../components/Map/DetailBudaya";
 import calculationAPI from "../../api/calculationAPI";
+import Legend from "../../components/Map/Legend";
 
 function MapView() {
 	//list budaya
@@ -98,6 +99,8 @@ function MapView() {
 			<div>
 				<Info />
 			</div>
+			{dataCalc !== null && <Legend high={dataCalc.high} low={dataCalc.low} />}
+
 			{/* {openBudaya && (
 				<Budaya name={locationName} onClose={() => setOpenBudaya(false)} />
 			)} */}

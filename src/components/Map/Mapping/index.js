@@ -9,7 +9,6 @@ import {
 	ZoomControl,
 	Marker,
 	Tooltip,
-	useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "../../../assets/css/location.css";
@@ -23,8 +22,10 @@ function MyMap(props) {
 
 	const countryStyle = {
 		fillOpacity: 0.3,
-		color: "black",
-		weight: 1,
+		color: "white",
+		weight: 2,
+		opacity: 1,
+		dashArray: "3",
 	};
 
 	const onEachProvince = async (province, layer) => {
@@ -34,6 +35,25 @@ function MyMap(props) {
 				data[province.index].provinsi.id,
 				data[province.index].provinsi.nama_provinsi
 			);
+		});
+		layer.on("mouseover", function (e) {
+			const target = e.target;
+			target.setStyle({
+				weight: 4,
+				color: "#666",
+				dashArray: "",
+				fillOpacity: 0.5,
+			});
+		});
+		layer.on("mouseout", function (e) {
+			const target = e.target;
+			target.setStyle({
+				fillOpacity: 0.3,
+				color: "white",
+				weight: 2,
+				opacity: 1,
+				dashArray: "3",
+			});
 		});
 		let high = await dataCalc.high;
 		let low = await dataCalc.low;
@@ -55,18 +75,21 @@ function MyMap(props) {
 			icon="fa-solid fa-location-dot fa-fw"
 			size="xl"
 			color="Dodgerblue"
+			className="drop-shadow-lg"
 		/>
 	);
 	const customMarkerIcon = new Leaflet.DivIcon({
 		html: iconHTML,
 	});
+	const centerMap = [-2, 120];
+	const zoomMap = 5.4;
 
 	return (
 		<div>
 			<MapContainer
 				className="fixed inset-0 "
-				zoom={5.4}
-				center={[-2, 120]}
+				zoom={zoomMap || 14}
+				center={centerMap || (data.province.latitude, data.province.longitude)}
 				scrollWheelZoom={true}
 				zoomControl={false}
 			>
