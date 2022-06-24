@@ -5,6 +5,7 @@ const baseURL = `${process.env.REACT_APP_API_URL}`;
 const API = axios.create({
 	baseURL,
 	withCredentials: true,
+	credentials: "include",
 });
 
 export default API;

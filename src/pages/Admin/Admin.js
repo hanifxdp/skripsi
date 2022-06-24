@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Banner, Header, Navbar } from "../../components";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import API from "../../api/API";
 
 export default function Admin({ children }) {
@@ -25,13 +25,6 @@ export default function Admin({ children }) {
 		}
 	);
 
-	// useEffect(() => {
-	// 	if (admin) {
-	// 		navigate("/admin");
-	// 	} else {
-	// 		navigate("/");
-	// 	}
-	// }, [admin]);
 	const toggleSidebar = () => {
 		setIsOpen(!isOpen);
 		console.log("toggleSidebar");

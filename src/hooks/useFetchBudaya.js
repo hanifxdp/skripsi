@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import BudayaAPI from "../api/Budaya";
-import usePagination from "./usePagination";
 
 const useFetchBudaya = (query) => {
 	const defaultPageDataValue = {
@@ -33,7 +32,6 @@ const useFetchBudaya = (query) => {
 			.catch((error) => {
 				console.log(error);
 			});
-		// console.log(res);
 	};
 
 	useEffect(() => {

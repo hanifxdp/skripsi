@@ -88,10 +88,10 @@ function MyMap(props) {
 		<div>
 			<MapContainer
 				className="fixed inset-0 "
-				zoom={zoomMap || 14}
-				center={centerMap || (data.province.latitude, data.province.longitude)}
+				zoom={zoomMap}
+				center={centerMap}
 				scrollWheelZoom={true}
-				zoomControl={false}	
+				zoomControl={false}
 			>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 				{data &&
