@@ -2,18 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Banner, Header, Navbar } from "../../components";
 import { Outlet, useNavigate } from "react-router-dom";
 import API from "../../api/API";
-import { AdminContext } from "../../context/AdminContext";
 
 export default function Admin({ children }) {
 	const [isOpen, setIsOpen] = useState(true);
 	const [isLogged, setIsLogged] = useState(true);
-	const { admin, setAdmin } = useContext(AdminContext);
-	const navigate = useNavigate();
 
 	API.interceptors.response.use(
 		(response) => response,
 		(error) => {
-			console.log(error);
 			if (
 				error &&
 				error.response &&

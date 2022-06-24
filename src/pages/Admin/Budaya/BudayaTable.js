@@ -35,7 +35,6 @@ const BudayaTable = () => {
 		<div className="mt-6 space-y-4">
 			<div className="flex items-center justify-between py-2">
 				<TableSize pageSize={pageSize} setPageSize={setPageSize} />
-				{/* <SearchBar onChange={searchCallbackHandler} /> */}
 			</div>
 			<div className="overflow-x-auto">
 				<Table data={budaya} columns={column} loading={loading} />

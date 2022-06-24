@@ -91,7 +91,7 @@ function MyMap(props) {
 				zoom={zoomMap || 14}
 				center={centerMap || (data.province.latitude, data.province.longitude)}
 				scrollWheelZoom={true}
-				zoomControl={false}
+				zoomControl={false}	
 			>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 				{data &&
