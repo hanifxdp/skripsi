@@ -1,11 +1,31 @@
 import * as yup from "yup";
 
 export const addBudayaForm = [
-	{ type: "number", label: "ID", name: "id" },
-	{ type: "number", label: "No. Kebudayaan", name: "registNum" },
-	{ type: "text", label: "Nama Kebudayaan", name: "nama_budaya" },
-	{ type: "text", label: "Deskripsi", name: "deskripsi" },
-	{ type: "text", label: "Tahun", name: "tahun" },
+	{
+		type: "number",
+		label: "ID",
+		name: "id",
+		placeholder: "ID dimulai dari 2990",
+	},
+	{
+		type: "number",
+		label: "No. Kebudayaan",
+		name: "registNum",
+		placeholder: "2000000",
+	},
+	{
+		type: "text",
+		label: "Nama Kebudayaan",
+		name: "nama_budaya",
+		placeholder: "Cth. Anyaman Bambu",
+	},
+	{
+		type: "textarea",
+		label: "Deskripsi",
+		name: "deskripsi",
+		placeholder: "Cth. Anyaman Bambu adalah...",
+	},
+	{ type: "text", label: "Tahun", name: "tahun", placeholder: "2010" },
 	{
 		type: "file",
 		label: "Gambar Kebudayaan",
@@ -13,7 +33,12 @@ export const addBudayaForm = [
 		accept: "image/*",
 		id: "fileInput",
 	},
-	{ type: "url", label: "Video Kebudayaan", name: "video" },
+	{
+		type: "url",
+		label: "Video Kebudayaan",
+		name: "video",
+		placeholder: "youtube",
+	},
 	{
 		type: "select",
 		label: "Provinsi",
@@ -91,7 +116,7 @@ export const addBudayaSchema = yup.object().shape({
 });
 
 export const updateBudayaForm = [
-	{ type: "text", label: "Nama Budaya", name: "nama_budaya" },
+	{ type: "text", label: "Nama Kebudayaan", name: "nama_budaya" },
 	{ type: "textarea", label: "Deskripsi", name: "deskripsi" },
 ];
 
@@ -102,7 +127,12 @@ export const updateBudayaMediaForm = [
 		name: "image",
 		accept: "image/*",
 	},
-	{ type: "url", label: "Video", name: "video" },
+	{
+		type: "url",
+		label: "Video Kebudayaan",
+		name: "video",
+		placeholder: "youtube",
+	},
 ];
 
 export const deleteBudayaForm = [
