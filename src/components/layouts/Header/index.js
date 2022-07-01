@@ -31,7 +31,7 @@ const Header = (props) => {
 					<FontAwesomeIcon icon={faBars} color="white" />
 				</button>
 				<div className="flex space-x-2">
-					<div className="font-bold text-white">{admin?.username}</div>
+					<div className="font-bold text-white">{admin?.nama_admin}</div>
 					<button
 						type="button"
 						className="flex items-center hover:cursor-pointer"
