@@ -33,10 +33,12 @@ export const EditBudayaMedia = () => {
 		if (typeof watchImage === "string" && checkURL(watchImage))
 			return watchImage;
 		if (watchImage?.length > 0 && watchImage !== "undefined") {
-			return URL.createObjectURL(watchImage[0]);
+			const image = [];
+			image.push(watchImage[0]);
+			return window.URL.createObjectURL(new Blob(image, { type: "image/*" }));
 		}
 
-		return "";
+		return " ";
 	}, [watchImage]);
 
 	const onSubmitHandlerCallback = useCallback((data) => {
@@ -55,8 +57,13 @@ export const EditBudayaMedia = () => {
 		<div>
 			<div className="text-sm">Preview Image</div>
 			<img
-				src={imageURL || singleData.data?.image || defaultImage}
+				alt="preview-image"
+				src={imageURL || singleData.data?.image}
 				className="object-contain h-48 rounded-lg w-96 "
+				onError={(e) => {
+					e.target.onerror = null;
+					e.target.src = defaultImage;
+				}}
 			/>
 			<form
 				id="update_budaya"
