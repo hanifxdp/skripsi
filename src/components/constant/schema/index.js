@@ -5,7 +5,7 @@ export const addBudayaForm = [
 		type: "number",
 		label: "ID",
 		name: "id",
-		placeholder: "ID dimulai dari 2990",
+		placeholder: "ID dimulai dari 2991",
 	},
 	{
 		type: "number",
@@ -37,7 +37,7 @@ export const addBudayaForm = [
 		type: "url",
 		label: "Video Kebudayaan",
 		name: "video",
-		placeholder: "youtube",
+		placeholder: "Youtube",
 	},
 	{
 		type: "select",
@@ -131,7 +131,7 @@ export const updateBudayaMediaForm = [
 		type: "url",
 		label: "Video Kebudayaan",
 		name: "video",
-		placeholder: "youtube",
+		placeholder: "Youtube",
 	},
 ];
 

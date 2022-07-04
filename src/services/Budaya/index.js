@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import BudayaAPI from "../../api/Budaya";
 import { useNavigate } from "react-router-dom";
 import useAPI, {
@@ -9,15 +9,18 @@ import useAPI, {
 
 const useBudayaServices = () => {
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 	const [createState, dispatchCreate] = useAPI();
 	const [updateState, dispatchUpdate] = useAPI();
 	const [deleteState, dispatchDelete] = useAPI();
 
 	const createBudaya = useCallback((data) => {
+		setLoading(true);
 		dispatchCreate({ type: FETCH_REQUEST });
 		BudayaAPI.createBudaya(data)
 			.then((res) => {
 				const response = res.data;
+				setLoading(false);
 				dispatchCreate({ type: FETCH_SUCCESS, payload: response });
 				navigate("/admin/budaya", { replace: true });
 			})
@@ -28,10 +31,12 @@ const useBudayaServices = () => {
 	});
 
 	const updateBudaya = useCallback((id, data) => {
+		setLoading(true);
 		dispatchUpdate({ type: FETCH_REQUEST });
 		BudayaAPI.updateBudaya(id, data)
 			.then((res) => {
 				const response = res.data;
+				setLoading(false);
 				dispatchUpdate({ type: FETCH_SUCCESS, payload: response });
 				navigate("/admin/budaya", { replace: true });
 			})
@@ -47,7 +52,7 @@ const useBudayaServices = () => {
 			.then((res) => {
 				const response = res.data;
 				dispatchDelete({ type: FETCH_SUCCESS, payload: response });
-				navigate("/admin/budaya");
+				navigate("/admin/budaya", { replace: true });
 			})
 			.catch((err) => {
 				const errMsg = err.message;
@@ -61,6 +66,7 @@ const useBudayaServices = () => {
 		updateBudaya,
 		deleteState,
 		deleteBudaya,
+		loading,
 	};
 };
 

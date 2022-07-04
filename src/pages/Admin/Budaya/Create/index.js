@@ -18,7 +18,7 @@ function AddBudaya() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({ resolver: yupResolver(addBudayaSchema), mode: "onTouched" });
-	const { createState, createBudaya } = useBudayaServices();
+	const { createState, createBudaya, loading } = useBudayaServices();
 
 	const watchImage = watch("image");
 
@@ -56,7 +56,11 @@ function AddBudaya() {
 				onSubmit={handleSubmit(onSubmitHandlerCallback)}
 			>
 				<div className="text-sm">Image Preview</div>
-				<img src={imageURL} className="object-contain h-48 rounded-lg w-96 " />
+				<img
+					src={imageURL}
+					alt="preview"
+					className="object-contain h-48 rounded-lg w-96 "
+				/>
 				<div className="space-y-2">
 					{addBudayaForm.map((input) => (
 						<InputForm
@@ -70,14 +74,15 @@ function AddBudaya() {
 							error={errors}
 							accept={input.accept}
 							options={input.options}
+							placeholder={input.placeholder}
 							required
 						/>
 					))}
 				</div>
 				<div className="flex justify-start my-5">
 					<div>
-						<Button size="small" submit>
-							Submit
+						<Button size="small" submit disabled={loading}>
+							{loading ? "Creating..." : "Submit"}
 						</Button>
 					</div>
 				</div>

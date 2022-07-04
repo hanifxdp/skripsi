@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ModalContext } from "../../context";
-import { Modals } from "../../components";
+import { Button, Modals } from "../../components";
 // import login from "../../services/Auth";
 
 const schema = yup.object().shape({
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 
 function Login() {
 	const { modal, setModal } = useContext(ModalContext);
-	const { loginAdmin } = Auth();
+	const { loginAdmin, loading } = Auth();
 
 	const onSubmitHandlerCallback = (data) => {
 		loginAdmin(data);
@@ -77,22 +77,11 @@ function Login() {
 							{errors.password && errors.password.message}
 						</div>
 						<div className="items-center justify-center py-2 ">
-							<button
-								className="w-full p-2 my-3 font-bold duration-300 bg-indigo-600 rounded-sm hover:bg-indigo-400"
-								type="submit"
-							>
-								LOG IN
-							</button>
+							<Button size="big" submit disabled={loading}>
+								{loading ? "Logging in..." : "Log In"}
+							</Button>
 						</div>
 					</form>
-					{/* <div className="my-3 text-lg text-center">
-						No account?
-						<Link to={"/registration"}>
-							<p className="font-medium text-indigo-500 underline-offset-4 hover:underline">
-								...Create One
-							</p>
-						</Link>
-					</div> */}
 					<Modals
 						title="Wrong Combination"
 						description="Please insert the correct combination."

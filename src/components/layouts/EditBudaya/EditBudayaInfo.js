@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import useBudayaServices from "../../../services/Budaya";
 import { updateBudayaForm } from "../../constant/schema";
 import { InputForm, Button } from "../../constant";
@@ -7,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useSingleFetchBudaya } from "../../../hooks/useSingleFetchBudaya";
 
 export const EditBudayaInfo = (props) => {
-	const { updateState, updateBudaya } = useBudayaServices();
+	const { updateState, updateBudaya, loading } = useBudayaServices();
 	const { singleData } = useSingleFetchBudaya();
 
 	const {
@@ -15,10 +14,7 @@ export const EditBudayaInfo = (props) => {
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm({
-		resolver: yupResolver(updateBudayaForm),
-		mode: "onTouched",
-	});
+	} = useForm();
 
 	useEffect(() => {
 		if (singleData) {
@@ -28,13 +24,19 @@ export const EditBudayaInfo = (props) => {
 			});
 		}
 	}, [singleData]);
-	
 
 	const onSubmitHandlerCallback = useCallback((data) => {
-		updateBudaya(singleData.data.id, data);
+		try {
+			const addForm = document.getElementById("update-budaya");
+			const formData = new FormData(addForm);
+			updateBudaya(singleData.data.id, formData);
+		} catch (error) {
+			console.log(error);
+		}
 	});
 	return (
 		<form
+			id="update-budaya"
 			className="w-1/2 space-y-4"
 			onSubmit={handleSubmit(onSubmitHandlerCallback)}
 		>
@@ -70,6 +72,7 @@ export const EditBudayaInfo = (props) => {
 						register={register}
 						error={errors}
 						options={input.options}
+						placeholder={input.placeholder}
 						required
 					/>
 				))}
@@ -90,8 +93,8 @@ export const EditBudayaInfo = (props) => {
 			</div>
 			<div className="flex justify-end">
 				<div>
-					<Button size="small" submit>
-						Submit
+					<Button size="small" submit disabled={loading}>
+						{loading ? "Updating..." : "Submit"}
 					</Button>
 				</div>
 			</div>

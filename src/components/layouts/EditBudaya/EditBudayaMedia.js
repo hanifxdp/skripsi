@@ -8,7 +8,7 @@ import { useSingleFetchBudaya } from "../../../hooks/useSingleFetchBudaya";
 import checkURL from "../../../helpers/checkURL";
 
 export const EditBudayaMedia = () => {
-	const { updateState, updateBudaya } = useBudayaServices();
+	const { updateState, updateBudaya, loading } = useBudayaServices();
 	const { singleData } = useSingleFetchBudaya();
 
 	const {
@@ -44,7 +44,7 @@ export const EditBudayaMedia = () => {
 	const onSubmitHandlerCallback = useCallback((data) => {
 		try {
 			const uploadedImage = data.image ? data.image[0] : undefined;
-			const addForm = document.getElementById("update_budaya");
+			const addForm = document.getElementById("update-budaya-image");
 			const formData = new FormData(addForm);
 			formData.set("image", uploadedImage);
 			updateBudaya(singleData.data.id, formData);
@@ -57,8 +57,8 @@ export const EditBudayaMedia = () => {
 		<div>
 			<div className="text-sm">Preview Image</div>
 			<img
-				alt="preview-image"
-				src={imageURL || singleData.data?.image}
+				alt="preview"
+				src={imageURL || singleData.data?.image || defaultImage}
 				className="object-contain h-48 rounded-lg w-96 "
 				onError={(e) => {
 					e.target.onerror = null;
@@ -66,7 +66,7 @@ export const EditBudayaMedia = () => {
 				}}
 			/>
 			<form
-				id="update_budaya"
+				id="update-budaya-image"
 				className="w-1/2 space-y-4"
 				onSubmit={handleSubmit(onSubmitHandlerCallback)}
 			>
@@ -82,14 +82,15 @@ export const EditBudayaMedia = () => {
 							register={register}
 							error={errors}
 							options={input.options}
+							placeholder={input.placeholder}
 							required
 						/>
 					))}
 				</div>
 				<div className="flex justify-end">
 					<div>
-						<Button size="small" submit>
-							Submit
+						<Button size="small" submit disabled={loading}>
+							{loading ? "Updating..." : "Submit"}
 						</Button>
 					</div>
 				</div>
