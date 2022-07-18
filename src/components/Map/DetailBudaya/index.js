@@ -17,14 +17,13 @@ export default function DetailBudaya() {
 		const res = await BudayaAPI.getDetailBudaya(id);
 		setDetail(res.data.data);
 	};
-	// console.log(id);
 
 	useEffect(() => {
 		fetchDetailBudaya();
 	}, []);
 
 	return (
-		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem]">
+		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] overflow-hidden">
 			<div className="absolute top-0 right-0 px-6 py-8 left hover:cursor-pointer">
 				<FontAwesomeIcon icon={faClose} onClick={() => navigate(-1)} />
 			</div>
@@ -36,31 +35,29 @@ export default function DetailBudaya() {
 						e.target.onerror = null;
 						e.target.src = defaultImage;
 					}}
-					className="rounded-tr-2xl"
+					className="rounded-tr-2xl object-fill w-full"
 				/>
 			</div>
-			<div className="inline-block p-7 ">
+			<div className="inline-block p-7 divide-y divide-slate-200">
 				<div className="py-2">
-					<p className="text-xl font-bold" title={detail?.nama_budaya}>
+					<p
+						className="text-xl font-bold pb-2 py-1"
+						title={detail?.nama_budaya}
+					>
 						{detail?.nama_budaya || empty}
 					</p>
-					<p className="text-sm">No. {detail?.registNum || empty}</p>
-					<p className="text-sm">
-						{detail.jenisKebudayaan?.nama_jenis || empty} dari{" "}
+					<p className="text-sm py-1">No. {detail?.registNum || empty}</p>
+					<p className="text-sm py-1">
+						{detail.jenisKebudayaan?.nama_jenis || empty} dari Provinsi{" "}
 						{detail.provinsi?.nama_provinsi || empty}
 					</p>
+					<p className="text-sm py-1">Tahun: {detail?.tahun || empty}</p>
 				</div>
-				<div className="">
-					<div>
-						<p>Tahun: {detail?.tahun || empty}</p>
-						<p></p>
-					</div>
-					<div>
-						<p className="text-base font-bold">Deskripsi</p>
-						<p className="text-sm text-justify text-ellipsis ...">
-							{detail?.deskripsi || empty}
-						</p>
-					</div>
+				<div className="py-2 pb-[100rem] resize-y ">
+					<p className="text-base font-bold">Deskripsi</p>
+					<p className="text-sm text-justify text-ellipsis ... leading-relaxed">
+						{detail?.deskripsi || empty}
+					</p>
 				</div>
 			</div>
 		</section>

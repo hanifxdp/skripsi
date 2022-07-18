@@ -57,7 +57,7 @@ function MyMap(props) {
 		});
 		let high = await dataCalc.high;
 		let low = await dataCalc.low;
-		const totalBudaya = parseInt(data[province.index]?.totalBudaya) + 3;
+		const totalBudaya = parseInt(data[province.index]?.totalBudaya);
 
 		if (totalBudaya) {
 			if (totalBudaya >= high) {
@@ -108,7 +108,7 @@ function MyMap(props) {
 						>
 							<Tooltip>
 								<b>{i.provinsi?.nama_provinsi}</b>
-								<p>{parseInt(i.totalBudaya) + 3} Budaya</p>
+								<p>{parseInt(i.totalBudaya)} Budaya</p>
 							</Tooltip>
 						</Marker>
 					))}

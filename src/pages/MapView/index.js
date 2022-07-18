@@ -85,7 +85,10 @@ function MapView() {
 	};
 
 	return (
-		<div onClick={() => setOpenResult(false)}>
+		<div
+			onClick={() => setOpenResult(false)}
+			className="overscroll-none overflow-hidden"
+		>
 			<div>
 				<SearchBar
 					onClickResult={handleClickResult}

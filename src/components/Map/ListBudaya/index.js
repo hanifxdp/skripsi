@@ -3,7 +3,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BudayaAPI from "../../../api/Budaya";
-import defaultImage from "../../../assets/img/img-default.svg";
+import provinsiImage from "../../../assets/img/indonesia.png";
 
 export default function ListBudaya(props) {
 	const { name, handleClickBudaya } = props;
@@ -26,7 +26,7 @@ export default function ListBudaya(props) {
 	};
 
 	return (
-		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem]">
+		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] ">
 			<div className="absolute top-0 right-0 px-6 py-8 left hover:cursor-pointer">
 				<FontAwesomeIcon icon={faClose} onClick={onClose} />
 			</div>
@@ -36,7 +36,7 @@ export default function ListBudaya(props) {
 			>
 				<img
 					alt="budaya-img"
-					src={defaultImage}
+					src={provinsiImage}
 					className="w-full rounded-tr-2xl"
 				/>
 			</div>

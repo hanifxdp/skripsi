@@ -31,7 +31,7 @@ export default function SearchBar(props) {
 							</div>
 						))
 					) : (
-						<div>
+						<div className="p-4">
 							<p>Kerajinan Tradisional tidak ditemukan!</p>
 						</div>
 					)}
