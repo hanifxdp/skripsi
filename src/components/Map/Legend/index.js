@@ -16,7 +16,7 @@ function Legend(props) {
 					<div className="w-12 h-12 bg-lime-300"></div>
 					<p className="p-2">
 						<span className="font-bold">
-							{">="} {roundHigh || "xxx"} {""}
+							{">"} {roundHigh || "xxx"} {""}
 						</span>
 						Kebudayaan
 					</p>
@@ -34,7 +34,7 @@ function Legend(props) {
 					<div className="w-12 h-12 bg-red-300"></div>
 					<p className="p-2">
 						<span className="font-bold">
-							{"<="} {roundLow || "xxx"} {""}
+							{"<"} {roundLow || "xxx"} {""}
 						</span>
 						Kebudayaan
 					</p>
