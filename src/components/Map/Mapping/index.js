@@ -60,9 +60,9 @@ function MyMap(props) {
 		const totalBudaya = parseInt(data[province.index]?.totalBudaya);
 
 		if (totalBudaya) {
-			if (totalBudaya >= high) {
+			if (totalBudaya > high) {
 				layer.options.fillColor = "green";
-			} else if (totalBudaya <= low) {
+			} else if (totalBudaya < low) {
 				layer.options.fillColor = "red";
 			} else {
 				layer.options.fillColor = "yellow";
