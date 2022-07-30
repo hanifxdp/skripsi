@@ -63,16 +63,32 @@ function App() {
 						>
 							<Route element={<BudayaPage />} exact path="/admin/budaya" />
 							<Route
-								element={<AddBudaya />}
+								element={
+									<ProtectedRoute user={admin}>
+										<AddBudaya />
+									</ProtectedRoute>
+								}
 								exact
 								path="/admin/budaya/create"
 							/>
 							<Route
-								element={<UpdateBudayaPage />}
+								element={
+									<ProtectedRoute user={admin}>
+										<UpdateBudayaPage />
+									</ProtectedRoute>
+								}
 								exact
 								path="/admin/budaya/:id"
 							/>
-							<Route element={<ProvinsiPage />} exact path="/admin/provinsi" />
+							<Route
+								element={
+									<ProtectedRoute user={admin}>
+										<ProvinsiPage />
+									</ProtectedRoute>
+								}
+								exact
+								path="/admin/provinsi"
+							/>
 						</Route>
 						<Route element={<NotFound />} exact path="/404" />
 						<Route path="*" element={<Navigate to="/404" />}></Route>

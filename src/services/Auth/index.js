@@ -26,9 +26,7 @@ export const Auth = () => {
 					dispatchLogin({ type: FETCH_SUCCESS, payload: response });
 					setAdmin(response);
 					setLoading(false);
-					setInterval(() => {
-						navigate("/admin");
-					}, 2000);
+					navigate("/admin");
 				})
 				.catch((err) => {
 					const errMsg = err.message;

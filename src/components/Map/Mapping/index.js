@@ -30,7 +30,7 @@ function MyMap(props) {
 
 	const onEachProvince = async (province, layer) => {
 		layer.on("click", function () {
-			// console.log(data);
+
 			handleClick(
 				data[province.index].provinsi.id,
 				data[province.index].provinsi.nama_provinsi
