@@ -2,10 +2,17 @@ import * as yup from "yup";
 
 export const addBudayaForm = [
 	{
+		type: "file",
+		label: "Gambar Kebudayaan",
+		name: "image",
+		accept: "image/*",
+		id: "fileInput",
+	},
+	{
 		type: "number",
 		label: "ID",
 		name: "id",
-		placeholder: "ID dimulai dari 2991",
+		placeholder: "ID dimulai dari 3056",
 	},
 	{
 		type: "number",
@@ -25,14 +32,8 @@ export const addBudayaForm = [
 		name: "deskripsi",
 		placeholder: "Cth. Anyaman Bambu adalah...",
 	},
-	{ type: "text", label: "Tahun", name: "tahun", placeholder: "2010" },
-	{
-		type: "file",
-		label: "Gambar Kebudayaan",
-		name: "image",
-		accept: "image/*",
-		id: "fileInput",
-	},
+	{ type: "number", label: "Tahun", name: "tahun", placeholder: "2010" },
+
 	{
 		type: "url",
 		label: "Video Kebudayaan",
@@ -101,18 +102,23 @@ export const addBudayaForm = [
 ];
 
 export const addBudayaSchema = yup.object().shape({
-	id: yup.number().required("Id is required"),
+	id: yup.number().required("Id is required").default(3056),
 	registNum: yup.number().required("No. Registrasi is required"),
+	tahun: yup.number().required("Tahun is required"),
 	nama_budaya: yup
 		.string()
 		.matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
 		.required("Nama Kebudayaan is required"),
-	deskripsi: yup
-		.string()
-		.matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
-		.required("Deskripsi is required"),
+	deskripsi: yup.string().required("Deskripsi is required"),
 	provinsiId: yup.string().required("Provinsi is required"),
 	jenisKebudayaanId: yup.string().required("Domain is required"),
+	video: yup
+		.string()
+		.matches(
+			/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+			"Link Video is Required"
+		)
+		.required("Link Video is required"),
 });
 
 export const updateBudayaForm = [

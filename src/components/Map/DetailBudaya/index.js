@@ -9,7 +9,6 @@ export default function DetailBudaya() {
 	const empty = "x";
 	const [searchParams] = useSearchParams();
 	const id = parseInt(searchParams.get("idBudaya"));
-	// const params = useParams();
 	const navigate = useNavigate();
 	const [detail, setDetail] = useState([]);
 
@@ -21,6 +20,9 @@ export default function DetailBudaya() {
 	useEffect(() => {
 		fetchDetailBudaya();
 	}, []);
+
+	const sliced = detail?.video?.split("/");
+	const word = sliced[3];
 
 	return (
 		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] overflow-hidden">
@@ -53,11 +55,25 @@ export default function DetailBudaya() {
 					</p>
 					<p className="text-sm py-1">Tahun: {detail?.tahun || empty}</p>
 				</div>
-				<div className="py-2 pb-[100rem] resize-y ">
+				<div className="py-2 resize-y ">
 					<p className="text-base font-bold">Deskripsi</p>
 					<p className="text-sm text-justify text-ellipsis ... leading-relaxed">
 						{detail?.deskripsi || empty}
 					</p>
+				</div>
+				<div className="py-2 pb-[100rem] resize-y ">
+					<p className="text-base font-bold pb-3">Video Kebudayaan</p>
+					<div className="overflow-hidden relative inset-0">
+						<iframe
+							className="inset-0"
+							width="390"
+							height="215"
+							src={`https://www.youtube.com/embed/${word}`}
+							frameBorder="0"
+							allow="autoplay; "
+							allowFullScreen
+						/>
+					</div>
 				</div>
 			</div>
 		</section>
