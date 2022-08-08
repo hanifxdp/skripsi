@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BudayaAPI from "../../../api/Budaya";
@@ -26,7 +26,7 @@ export default function ListBudaya(props) {
 	};
 
 	return (
-		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] ">
+		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] divide-y ">
 			<div className="absolute top-0 right-0 px-6 py-8 left hover:cursor-pointer">
 				<FontAwesomeIcon icon={faClose} onClick={onClose} />
 			</div>
@@ -40,28 +40,31 @@ export default function ListBudaya(props) {
 					className="w-full rounded-tr-2xl"
 				/>
 			</div>
-			<div className="inline-block p-7">
+			<div className="inline-block p-7 resize-y">
 				<p className="text-xl font-bold">{name}</p>
 				<p className="text-sm">Kerajinan Tradisional dari Provinsi {name}</p>
 			</div>
-			<p className="px-7">Daftar Kerajinan Tradisional</p>
-			<ul className="px-10 my-1 list-inside">
+			<p className="px-7 font-bold resize-y py-1">
+				Daftar Kerajinan Tradisional
+			</p>
+			<p>
 				{listBudaya &&
 					listBudaya.map((i, idx) => (
-						<li
+						<p
 							key={idx}
 							onClick={() => handleClickBudaya(i.id)}
-							className="leading-normal list-decimal hover:cursor-pointer"
+							className="px-7 hover:cursor-pointer py-4 hover:bg-sky-500 hover:text-white last:rounded-br-2xl"
 						>
 							{i.nama_budaya}
-						</li>
+							<span>
+								<FontAwesomeIcon
+									className="right-0 absolute px-6"
+									icon={faCircleInfo}
+								/>
+							</span>
+						</p>
 					))}
-			</ul>
+			</p>
 		</section>
 	);
 }
-
-// ListBudaya.defaultProps = {
-// 	name: "",
-// 	handleClickBudaya: () => {},
-// };

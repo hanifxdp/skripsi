@@ -21,8 +21,9 @@ export default function DetailBudaya() {
 		fetchDetailBudaya();
 	}, []);
 
-	const sliced = detail?.video?.split("/");
-	const word = sliced[3];
+	// const sliced = detail?.video?.split("/");
+
+	// console.log(sliced[3]);
 
 	return (
 		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] overflow-hidden">
@@ -63,12 +64,13 @@ export default function DetailBudaya() {
 				</div>
 				<div className="py-2 pb-[100rem] resize-y ">
 					<p className="text-base font-bold pb-3">Video Kebudayaan</p>
+					<a href={detail?.video}>Link</a>
 					<div className="overflow-hidden relative inset-0">
 						<iframe
 							className="inset-0"
 							width="390"
 							height="215"
-							src={`https://www.youtube.com/embed/${word}`}
+							// src={`https://www.youtube.com/embed/${sliced}`}
 							frameBorder="0"
 							allow="autoplay; "
 							allowFullScreen
