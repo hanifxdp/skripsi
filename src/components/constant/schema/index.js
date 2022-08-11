@@ -12,7 +12,7 @@ export const addBudayaForm = [
 		type: "number",
 		label: "ID",
 		name: "id",
-		placeholder: "ID dimulai dari 3056",
+		placeholder: "ID dimulai dari 1968",
 	},
 	{
 		type: "number",
@@ -101,10 +101,20 @@ export const addBudayaForm = [
 	},
 ];
 
+const date = new Date();
+const today = date.getFullYear();
+
 export const addBudayaSchema = yup.object().shape({
-	id: yup.number().required("Id is required").default(3056),
+	id: yup
+		.number()
+		.required("Id is required")
+		.min(1968, "Please enter over 1968"),
 	registNum: yup.number().required("No. Registrasi is required"),
-	tahun: yup.number().required("Tahun is required"),
+	tahun: yup
+		.number()
+		.required("Tahun is required")
+		.min(2010, "Please enter over 2010")
+		.max(today, "Please enter below this year."),
 	nama_budaya: yup
 		.string()
 		.matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")

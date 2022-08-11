@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import defaultImage from "../../../assets/img/img-default.svg";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faLink } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BudayaAPI from "../../../api/Budaya";
+import Button from "../../constant/Button/Button";
 
 export default function DetailBudaya() {
 	const empty = "x";
@@ -20,10 +21,6 @@ export default function DetailBudaya() {
 	useEffect(() => {
 		fetchDetailBudaya();
 	}, []);
-
-	// const sliced = detail?.video?.split("/");
-
-	// console.log(sliced[3]);
 
 	return (
 		<section className="absolute z-20 bg-white rounded-r-2xl w-[28rem] overflow-hidden">
@@ -56,25 +53,22 @@ export default function DetailBudaya() {
 					</p>
 					<p className="text-sm py-1">Tahun: {detail?.tahun || empty}</p>
 				</div>
-				<div className="py-2 resize-y ">
-					<p className="text-base font-bold">Deskripsi</p>
-					<p className="text-sm text-justify text-ellipsis ... leading-relaxed">
-						{detail?.deskripsi || empty}
-					</p>
-				</div>
-				<div className="py-2 pb-[100rem] resize-y ">
-					<p className="text-base font-bold pb-3">Video Kebudayaan</p>
-					<a href={detail?.video}>Link</a>
-					<div className="overflow-hidden relative inset-0">
-						<iframe
-							className="inset-0"
-							width="390"
-							height="215"
-							// src={`https://www.youtube.com/embed/${sliced}`}
-							frameBorder="0"
-							allow="autoplay; "
-							allowFullScreen
-						/>
+				<div className="overscroll-contain">
+					<div className="py-2 ">
+						<p className="text-base font-bold pb-2">Deskripsi</p>
+						<p className="text-sm text-justify leading-loose indent-8 break-words tracking-normal">
+							{detail?.deskripsi || empty}
+						</p>
+					</div>
+					<div className="py-2 pb-2 resize-y ">
+						<p className="text-base font-bold pb-3">
+							Video Kebudayaan & Informasi Tambahan
+						</p>
+						<a href={detail?.video}>
+							<Button disabled={!detail.video}>
+								<FontAwesomeIcon icon={faLink} /> Tautan
+							</Button>
+						</a>
 					</div>
 				</div>
 			</div>

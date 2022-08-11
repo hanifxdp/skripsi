@@ -44,7 +44,7 @@ export default function ListBudaya(props) {
 				<p className="text-xl font-bold">{name}</p>
 				<p className="text-sm">Kerajinan Tradisional dari Provinsi {name}</p>
 			</div>
-			<p className="px-7 font-bold resize-y py-1">
+			<p className="px-7 font-bold overflow-auto py-1">
 				Daftar Kerajinan Tradisional
 			</p>
 			<p>
