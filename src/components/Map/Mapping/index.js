@@ -64,7 +64,7 @@ function MyMap(props) {
 				layer.options.fillColor = "green";
 			} else if (totalBudaya < low) {
 				layer.options.fillColor = "red";
-			} else {
+			} else {	
 				layer.options.fillColor = "yellow";
 			}
 		}

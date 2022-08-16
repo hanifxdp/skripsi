@@ -9,6 +9,7 @@ import ListBudaya from "../../components/Map/ListBudaya";
 import DetailBudaya from "../../components/Map/DetailBudaya";
 import calculationAPI from "../../api/calculationAPI";
 import Legend from "../../components/Map/Legend";
+import ModalNilaiAcuan from "../../components/Map/ModalNilaiN";
 
 function MapView() {
 	//list budaya
@@ -23,6 +24,12 @@ function MapView() {
 	const [dataProvinsi, setDataProvinsi] = useState([]);
 	const [dataBudaya, setDataBudaya] = useState([]);
 	const [keyword, setKeyword] = useState("");
+	const [openModal, setOpenModal] = useState(false);
+	const [setNilaiAcuan] = useState(0.1);
+
+	const clickOke = () => {
+		setOpenModal(false);
+	};
 
 	const fetchData = async () => {
 		const res = await ProvinsiAPI.getProvinsi();
@@ -37,6 +44,10 @@ function MapView() {
 	const fetchDataBudaya = async () => {
 		const resBudaya = await BudayaAPI.getAll();
 		setDataBudaya(resBudaya.data.data);
+	};
+
+	const submitNilaiAcuan = (e) => {
+		setNilaiAcuan(e.target.value);
 	};
 
 	useEffect(() => {
@@ -73,6 +84,7 @@ function MapView() {
 			setOpenResult(true);
 		}
 	};
+
 	const renderContent = () => {
 		if (id) {
 			return (
@@ -87,7 +99,7 @@ function MapView() {
 	return (
 		<div
 			onClick={() => setOpenResult(false)}
-			className="overscroll-none overflow-hidden"
+			className="overflow-hidden overscroll-none"
 		>
 			<div>
 				<SearchBar
@@ -102,11 +114,20 @@ function MapView() {
 			<div>
 				<Info />
 			</div>
-			{dataCalc !== null && <Legend high={dataCalc.high} low={dataCalc.low} />}
-
-			{/* {openBudaya && (
-				<Budaya name={locationName} onClose={() => setOpenBudaya(false)} />
-			)} */}
+			{dataCalc && (
+				<Legend
+					openModal={() => setOpenModal(true)}
+					high={dataCalc.high}
+					low={dataCalc.low}
+				/>
+			)}
+			{openModal && (
+				<ModalNilaiAcuan
+					isOpen={openModal}
+					closeModal={clickOke}
+					handleSubmit={submitNilaiAcuan}
+				/>
+			)}
 			{dataProvinsi.length > 0 && dataCalc !== null && (
 				<MyMap
 					handleClick={handleClickLocation}

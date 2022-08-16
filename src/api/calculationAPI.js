@@ -1,8 +1,8 @@
 import API from "./API";
 
 const calculationAPI = {
-	getCalc() {
-		return API.get("/calculation");
+	async getCalc(n) {
+		return API.get(`/calculation${window.location.search}`, n);
 	},
 };
 
