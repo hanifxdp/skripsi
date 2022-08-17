@@ -25,7 +25,7 @@ function MapView() {
 	const [dataBudaya, setDataBudaya] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [openModal, setOpenModal] = useState(false);
-	const [setNilaiAcuan] = useState(0.1);
+	const [setNilaiAcuan] = useState();
 
 	const clickOke = () => {
 		setOpenModal(false);
